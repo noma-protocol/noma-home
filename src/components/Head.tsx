@@ -18,13 +18,16 @@ function Head({ title, desc, ...rest }) {
 return (
     <Box 
       as="section" 
-      className="content-area" 
       display={"inline-block"} 
       // p={ isMobile ? '8vh' : '10vh' } 
       my={20}
       minH={'100vh'} 
     >
-      <Box className="container">
+      <Box p={isMobile ? "10vw" : "5vw"} 
+          flex={1}
+          gap={20} 
+          className="container"
+      >
         <Box className="row align-items-center justify-content-center" >
           <Flex direction={{ base: "column", md: "row" }} align="center" justify="center" width="full">
             
