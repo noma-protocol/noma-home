@@ -10,6 +10,7 @@ import Treasury from "../components/Treasury.tsx";
 import AMM from "../components/AMM.tsx";
 import ALM from "../components/ALM.tsx";
 import CTA from "../components/CTA.tsx";
+import Head from "../components/Head.tsx";
 // import DetailsX from "../components/DetailsX.tsx";
 
 
@@ -19,6 +20,7 @@ const HomePage: React.FC = () => {
     <>
       <Container>
         <Hero />
+        <Head />
         <Stats />
         <Treasury />
         {/* <DetailsX /> */}
