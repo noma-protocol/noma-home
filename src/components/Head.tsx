@@ -17,10 +17,9 @@ function Head({ title, desc, ...rest }) {
 
 return (
     <Box 
+      alignContent={'center'}
       as="section" 
-      display={"inline-block"} 
-      // p={ isMobile ? '8vh' : '10vh' } 
-      my={20}
+      p={ isMobile ? '8vh' : '10vh' } 
       minH={'100vh'} 
     >
       <Box p={isMobile ? "10vw" : "5vw"} 
@@ -62,13 +61,12 @@ return (
             </Box>  
 
             <Box 
-              // width={ isMobile ? '0' : '50%' } 
+              width={ isMobile ? '0' : '50%' } 
               textAlign={"center"}
             >
                 <Image 
                   objectFit={'cover'}
                   maxW={'75%'}
-                  // w={isMobile ? "100%" : "90%"}
                   src={"https://raw.githubusercontent.com/noma-protocol/assets/main/hands.png"}
                   visibility={ isMobile ? 'hidden' : 'initial' }
                 />

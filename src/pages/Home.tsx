@@ -4,7 +4,6 @@ import { isMobile } from 'react-device-detect';
 // import { commify } from "../utils";
 
 // Components
-import Hero from "../components/Hero.tsx";
 import Stats from "../components/Stats.tsx";
 import Treasury from "../components/Treasury.tsx";
 import AMM from "../components/AMM.tsx";
@@ -19,7 +18,6 @@ const HomePage: React.FC = () => {
   return (
     <>
       <Container>
-        <Hero />
         <Head />
         <Stats />
         <Treasury />
