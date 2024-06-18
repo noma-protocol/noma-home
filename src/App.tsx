@@ -4,7 +4,7 @@ import { LanguageProvider } from "./core/LanguageProvider";
 import { createWeb3Modal, defaultWagmiConfig } from "@web3modal/wagmi/react";
 import { WagmiConfig } from "wagmi";
 import { bsc, localhost } from "viem/chains";
-import { ToastContainer } from "react-toastify";
+// import { ToastContainer } from "react-toastify";
 import { switchNetwork, watchNetwork } from "wagmi/actions";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -13,8 +13,8 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 function App() {
+  
   const projectId = "1607c5f300e1191999e3033443961435";
-
   const metadata = {
     name: "Noma Protocol",
     description: "Decentralized Money",
@@ -51,7 +51,6 @@ function App() {
         <Header />
         <Outlet />
         <Footer />
-        <ToastContainer theme="dark" />
       </LanguageProvider>
     </WagmiConfig>
   );

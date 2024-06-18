@@ -1,45 +1,13 @@
 import {
-    Container,
-    Image,
     Flex,
     Heading,
     Text,
     Stack,
-    StackDivider,
-    Icon,
     useColorModeValue,
-    HStack,
-    VStack,
     Box,
+    Image
   } from '@chakra-ui/react';
-  import {
-    IoAnalyticsSharp,
-    IoLogoBitcoin,
-    IoSearchSharp,
-  } from 'react-icons/io5';
-  import { ReactElement } from 'react';
   import { isMobile } from "react-device-detect";
-
-  interface FeatureProps {
-    text: string;
-    iconBg: string;
-    icon?: ReactElement;
-  }
-  
-  const Feature = ({ text, icon, iconBg }: FeatureProps) => {
-    return (
-      <Stack direction={'row'} align={'center'}>
-        <Flex
-          w={8}
-          h={8}
-          rounded={'full'}
-          bg={iconBg}>
-          {icon}
-        </Flex>
-        <Text fontWeight={600}>{text}</Text>
-      </Stack>
-    );
-  };
   
   export default function Features() {
     return (

@@ -5,17 +5,13 @@ import { isMobile } from 'react-device-detect';
 
 // Components
 import Hero from "../components/Hero.tsx";
-import Features from "../components/Features.tsx";
 import Stats from "../components/Stats.tsx";
-import ComponentX from "../components/Treasury.tsx";
+import Treasury from "../components/Treasury.tsx";
 import AMM from "../components/AMM.tsx";
 import ALM from "../components/ALM.tsx";
-import DetailsX from "../components/DetailsX.tsx";
+import CTA from "../components/CTA.tsx";
+// import DetailsX from "../components/DetailsX.tsx";
 
-// Reference
-// import Details from "../components/Details.tsx";
-// import Tools from "../components/Tools.tsx";
-// import Aggregators from "../components/Aggregators.tsx";
 
 const HomePage: React.FC = () => {
   console.log(`isMobile: ${isMobile}`)
@@ -24,14 +20,11 @@ const HomePage: React.FC = () => {
       <Container>
         <Hero />
         <Stats />
-        <ComponentX />
-        <DetailsX />
-        {/* <Details /> */}
+        <Treasury />
+        {/* <DetailsX /> */}
         <ALM />
-        {/* <Tools /> */}
         <AMM />
-        <Features />
-        {/* <Aggregators /> */}
+        <CTA />
       </Container>
     </>
   );

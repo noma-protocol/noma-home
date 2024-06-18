@@ -3,17 +3,8 @@ import { Box, Flex, Image, Stack, Heading, Text, List, ListItem } from "@chakra-
 import { LanguageContext, LanguageContextType } from "../core/LanguageProvider";
 import { isMobile } from "react-device-detect";
 
-const ComponentX: React.FC = () => {
+const Treasury: React.FC = () => {
 const ctx = useContext<LanguageContextType>(LanguageContext);
-
-function Feature({ title, desc, ...rest }) {
-    return (
-      <Box p={5} shadow='md' borderWidth='1px' {...rest}>
-        <Heading fontSize='xl'>{title}</Heading>
-        <Text mt={4}>{desc}</Text>
-      </Box>
-    )
-  }
 
 return (
     <Box 
@@ -72,4 +63,4 @@ return (
   )
 }
 
-export default ComponentX;
+export default Treasury;

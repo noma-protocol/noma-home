@@ -1,28 +1,15 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-import { LanguageContext, LanguageContextType } from "../core/LanguageProvider";
-import { useWeb3Modal } from "@web3modal/wagmi/react";
-import { useAccount } from "wagmi";
+// import { LanguageContext, LanguageContextType } from "../core/LanguageProvider";
+// import { useWeb3Modal } from "@web3modal/wagmi/react";
+// import { useAccount } from "wagmi";
 import Logo from "../assets/images/noma_logo_transparent.png";
-import { isMobile } from 'react-device-detect';
-import { 
-  Heading, 
-  Box,
-  Stack, 
-  Image,
-  // Link,
-  Text,
-  Input,
-  Button,
-  Flex,
-  HStack,     
-  VStack
-} from '@chakra-ui/react';
+// import { isMobile } from 'react-device-detect';
+import { Link, Image } from '@chakra-ui/react';
 
 const Header: React.FC = () => {
-  const ctx = useContext<LanguageContextType>(LanguageContext);
-  const { open } = useWeb3Modal();
-  const { address, isConnected } = useAccount();
+  // const ctx = useContext<LanguageContextType>(LanguageContext);
+  // const { open } = useWeb3Modal();
+  // const { address, isConnected } = useAccount();
 
   return (
     <header id="header">
