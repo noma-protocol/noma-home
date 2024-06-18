@@ -3,10 +3,10 @@ import { Box, Flex, Image, Stack, Heading, Text } from "@chakra-ui/react"
 import { LanguageContext, LanguageContextType } from "../core/LanguageProvider";
 import { isMobile } from "react-device-detect";
 
-const ComponentY: React.FC = () => {
+const AMM: React.FC = () => {
 const ctx = useContext<LanguageContextType>(LanguageContext);
 
-function Feature({ title, desc, ...rest }) {
+function AMM({ title, desc, ...rest }) {
     return (
       <Box p={5} shadow='md' borderWidth='1px' {...rest}>
         <Heading fontSize='xl'>{title}</Heading>
@@ -61,4 +61,4 @@ return (
   )
 }
 
-export default ComponentY;
+export default AMM;

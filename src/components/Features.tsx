@@ -69,13 +69,13 @@ import {
             </Text>
           </Stack>
           <Stack width={isMobile ? '0' : ''}>
-            {/* <Image
+            <Image
               rounded={'md'}
               alt={'feature image'}
               src={'https://raw.githubusercontent.com/noma-protocol/assets/main/flat/noma-flat-01.png'}
               objectFit={'cover'}
               w={isMobile ? "100%" : "90%"}
-            /> */}
+            />
           </Stack>
         </Flex>
       </Box>

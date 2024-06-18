@@ -24,7 +24,7 @@ import {
           justify={'center'}
           gap={20}
         >
-            <VStack 
+            <Stack 
               alignItems={'baseline'} 
               maxW={isMobile ? 250 : '20vh'}
               >
@@ -51,24 +51,23 @@ import {
                   rounded={'full'}
                   bg={'lightgreen'}
                   color={'black'}
-                  minW={100}
-                  >
-                  Presale
+                  minW={100}>
+                  dApp
                 </Button>
                 <Button p={15} rounded={'full'} minW={100}>
                   Docs
                 </Button>
               </Stack>
-            </VStack>
-            <VStack width={ isMobile ? '0px' : '' }>
+            </Stack>
+            <Stack width={ isMobile ? '0px' : '' }>
               <Image
                 alt={'Noma'}
-                maxW={'50vh'}
+                maxW={'40vh'}
                 objectFit={'contain'}
                 src={'https://raw.githubusercontent.com/noma-protocol/assets/main/hands.png'}
                 visibility={ isMobile ? 'hidden' : 'initial' }
               />
-            </VStack>
+            </Stack>
         </Flex>
       </Stack>
     );

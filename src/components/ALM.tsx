@@ -1,12 +1,9 @@
-import React, { useContext } from "react";
 import { Box, Flex, Image, Stack, Heading, Text, List, ListItem } from "@chakra-ui/react"
-import { LanguageContext, LanguageContextType } from "../core/LanguageProvider";
 import { isMobile } from "react-device-detect";
 
-const ComponentZ: React.FC = () => {
-const ctx = useContext<LanguageContextType>(LanguageContext);
+const ALM: React.FC = () => {
 
-function Feature({ title, desc, ...rest }) {
+function ALM({ title, desc, ...rest }) {
     return (
       <Box p={5} shadow='md' borderWidth='1px' {...rest}>
         <Heading fontSize='xl'>{title}</Heading>
@@ -73,4 +70,4 @@ return (
   )
 }
 
-export default ComponentZ;
+export default ALM;

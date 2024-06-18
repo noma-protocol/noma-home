@@ -27,45 +27,44 @@ const Header: React.FC = () => {
   return (
     <header id="header">
       <nav className="navbar navbar-expand navbar-fixed-top" >
-      <div className="container header">
-        <Image
-          src={Logo}
-          alt="Noma Protocol"
-          style={{ width: "50px", height: "50px" }}
-        />
+        <div className="container header">
+          
+          <Image
+            src={Logo}
+            alt="Noma Protocol"
+            style={{ width: "50px", height: "50px" }}
+          />
+          
+          {/* Remove mx-auto class and add justify-content-start to align items to the left */}
+          <ul className="navbar-nav items justify-content-start " >
+            <li className="nav-item">
+              <Link className="nav-link" to="https://github.com/noma-protocol" target="_blank">
+                  Github
+              </Link>
+            </li>
 
-        {/* Remove the ml-auto class from here if it exists */}
-        <div></div> 
-        
-        {/* Remove mx-auto class and add justify-content-start to align items to the left */}
-        <ul className="navbar-nav items justify-content-start " >
-          <li className="nav-item">
-            <Link className="nav-link" to="/">
-              {!ctx.isSpanishCountry ? "What's this?" : "Que es esto?"}
-            </Link>
-          </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="https://nomaprotocol.medium.com/" target="_blank">
+                  Medium
+              </Link>
+            </li>        
 
-          <li className="nav-item">
-            <Link className="nav-link" to="/">
-              {!ctx.isSpanishCountry ? "Docs" : "Docs"}
-            </Link>
-          </li>        
+            <li className="nav-item">
+              <Link className="nav-link" to="https://discord.gg/cFZDeS3cQc" target="_blank">
+                  Discord
+              </Link>
+            </li>                         
+          </ul>
 
-          <li className="nav-item">
-            <Link className="nav-link" to="/">
-              {!ctx.isSpanishCountry ? "Go to dApp" : "Abre la dApp"}
-            </Link>
-          </li>                         
-        </ul>
-
-          <ul className="navbar-nav action">
+          {/* Wallet Connect */}
+          {/* <ul className="navbar-nav action">
             <li className="nav-item ml-2">
               <a
                 className="btn ml-lg-auto btn-bordered-green"
                 onClick={() => open()}
               >
                 <p style={{color:"#54ff36"}}>
-                {/* <i className="fa-solid fa-wallet mr-md-2 green-bg"></i> */}
+                <i className="fa-solid fa-wallet mr-md-2 green-bg"></i>
                 {isConnected
                   ? `${address?.slice(0, 6)}...${address?.slice(-6)}`
                   : !ctx.isSpanishCountry
@@ -74,7 +73,8 @@ const Header: React.FC = () => {
                 </p>
               </a>
             </li>
-          </ul>
+          </ul> */}
+
           <ul className="navbar-nav toggle">
             <li className="nav-item">
               <a
@@ -87,9 +87,9 @@ const Header: React.FC = () => {
             </li>
           </ul>
 
-
         </div>
       </nav>
+      {/* Mobile Modal */}
       <div id="menu" className="modal fade p-0">
         <div className="modal-dialog dialog-animated">
           <div className="modal-content h-100">
@@ -104,16 +104,49 @@ const Header: React.FC = () => {
               <div className="row w-100">
                 <div className="items p-0 col-12 text-center">
                   <ul className="navbar-nav items mx-auto">
+
                     <li
                       className="nav-item"
                       data-bs-dismiss="modal"
                       style={{ fontSize: "20px" }}
                     >
-                      <Link className="nav-link" to="/">
-                        {!ctx.isSpanishCountry ? "What's this?" : "Que es esto?"}
-                      </Link>
+                      {/* <Link className="nav-link" to="/">
+                        NOMA
+                      </Link> */}
                     </li>
+
                     <li
+                      className="nav-item"
+                      data-bs-dismiss="modal"
+                      style={{ fontSize: "20px", marginTop:"20px"}}
+                    >
+                      <a className="btn ml-lg-auto btn-bordered-white" href="https://github.com/noma-protocol" target="_blank">
+                        Github
+                      </a>
+                    </li>
+
+                    <li
+                      className="nav-item"
+                      data-bs-dismiss="modal"
+                      style={{ fontSize: "20px", marginTop:"20px"}}
+                    >
+                      <a className="btn ml-lg-auto btn-bordered-white" href="https://nomaprotocol.medium.com/" target="_blank">
+                        Medium
+                      </a>
+                    </li>
+
+                    <li
+                      className="nav-item"
+                      data-bs-dismiss="modal"
+                      style={{ fontSize: "20px", marginTop:"20px"}}
+                    >
+                      <a className="btn ml-lg-auto btn-bordered-white" href="https://discord.gg/cFZDeS3cQc" target="_blank">
+                        Discord
+                      </a>
+                    </li>
+
+                    {/* Wallet Connect */}
+                    {/* <li
                       className="nav-item"
                       data-bs-dismiss="modal"
                       style={{ fontSize: "20px", marginTop:"20px"}}
@@ -129,7 +162,8 @@ const Header: React.FC = () => {
                           ? "Wallet Connect"
                           : "Conectar billetera"}
                       </a>
-                    </li>
+                    </li> */}
+
                   </ul>
                 </div>
               </div>

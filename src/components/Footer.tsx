@@ -1,11 +1,7 @@
-import React, { useContext } from "react";
-import { LanguageContext, LanguageContextType } from "../core/LanguageProvider";
 import { Link } from "react-router-dom";
 import { SimpleGrid, Box, HStack, Center } from '@chakra-ui/react';
 
 const Footer: React.FC = () => {
-
-  const ctx = useContext<LanguageContextType>(LanguageContext);
   return (
     <footer className="footer-area">
       <div className="container">
@@ -13,7 +9,7 @@ const Footer: React.FC = () => {
           <div className="col-12 col-md-8 text-center">
             <div className="footer-items">
               <Center>
-                <p className="nomalogo">Noma Protocol 2024</p>
+                <p className="nomalogo">Noma Protocol</p>
               </Center>
               <div className="social-icons d-flex justify-content-center my-4">
                   <Box  w="55vh" h="2vh">
@@ -24,7 +20,7 @@ const Footer: React.FC = () => {
                         <i className="fa-brands fa-discord"></i>
                             <Link 
                               className="discord"
-                              to="https://discord.gg/FW9XRhZE"
+                              to="https://discord.gg/cFZDeS3cQc"
                               target="_blank"
                               rel="noopener noreferrer"
                             >
