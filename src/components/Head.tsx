@@ -66,7 +66,6 @@ return (
             >
                 <Image 
                   objectFit={'cover'}
-                  maxW={'75%'}
                   src={"https://raw.githubusercontent.com/noma-protocol/assets/main/hands.png"}
                   visibility={ isMobile ? 'hidden' : 'initial' }
                 />

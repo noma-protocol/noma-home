@@ -1,4 +1,4 @@
-import { Box, Flex, Image, Stack, Heading, Text, List, ListItem } from "@chakra-ui/react"
+import { Box, Flex, Image, Stack, Heading, Text } from "@chakra-ui/react"
 import { isMobile } from "react-device-detect";
 
 const ALM: React.FC = () => {
@@ -45,22 +45,11 @@ return (
                     Automated
                   </Text>
                   <Heading alignSelf={'flex-start'}>Liquidity Management</Heading>
-                  {/* <Text color={'gray.500'} fontSize={'lg'}>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-                  </Text> */}
-                    <List>
-                      <ListItem>
-                        <Text color={'gray.500'}>
-                          Automated rebalancing mechanisms to distribute liquidity on Uniswap V3 pools based on volume.
-                        </Text>
-                      </ListItem>
-                      <ListItem>
-                        Continuously increases to floor price as the protocol-owned-liquidity increases from earning fees
-                      </ListItem>
-                      <ListItem>
-                        Rebalancing actions may include adding or removing liquidity from pools, adjusting pool parameters, or reallocating assets based on predefined rules and algorithms.
-                      </ListItem>
-                    </List>
+                  <Text color={'gray.500'} fontSize={'lg'}>
+                    - Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore <br/>
+                    - Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore<br/>
+                    - Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore<br/>
+                  </Text>
                 </Stack>
             </Box> 
           </Flex>         
