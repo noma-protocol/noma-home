@@ -1,16 +1,7 @@
-import { Box, Flex, Image, Stack, Heading, Text } from "@chakra-ui/react"
+import { Box, Flex, Image, Stack, Heading, Text, Button } from "@chakra-ui/react"
 import { isMobile } from "react-device-detect";
 
 const ALM: React.FC = () => {
-
-function ALM({ title, desc, ...rest }) {
-    return (
-      <Box p={5} shadow='md' borderWidth='1px' {...rest}>
-        <Heading fontSize='xl'>{title}</Heading>
-        <Text mt={4}>{desc}</Text>
-      </Box>
-    )
-  }
 
 return (
     <Box 
@@ -36,7 +27,7 @@ return (
                 <Stack spacing={4}>
                   <Text
                     textTransform={'uppercase'}
-                    color={'blue.400'}
+                    color={'#1ad000'}
                     fontWeight={600}
                     fontSize={'sm'}
                     p={2}
@@ -45,11 +36,19 @@ return (
                     Automated
                   </Text>
                   <Heading alignSelf={'flex-start'}>Liquidity Management</Heading>
-                  <Text color={'gray.500'} fontSize={'lg'}>
+                  <Text color={'white'} fontSize={'lg'}>
                     - Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore <br/>
                     - Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore<br/>
                     - Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore<br/>
                   </Text>
+                  <Button 
+                    maxW={"10vw"} 
+                    p={15}
+                    background={"black"}
+                    color={"#1ad000"}
+                    fontWeight={600} >
+                      Read More
+                  </Button>
                 </Stack>
             </Box> 
           </Flex>         

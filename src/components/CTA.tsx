@@ -1,4 +1,4 @@
-import { Box, Flex, Stack, Heading, Text } from "@chakra-ui/react"
+import { Box, Flex, Stack, Heading, Text, Button, HStack } from "@chakra-ui/react"
 import { isMobile } from "react-device-detect";
 
 const CTA: React.FC = () => {
@@ -18,7 +18,7 @@ return (
                 <Stack spacing={4}>
                   <Text
                     textTransform={'uppercase'}
-                    color={'blue.400'}
+                    color={'#1ad000'}
                     fontWeight={600}
                     fontSize={'sm'}
                     p={2}
@@ -27,10 +27,27 @@ return (
                     Stay tuned
                   </Text>
                   <Heading alignSelf={'flex-start'}>Beyond the Horizon: Explore the Unknown</Heading>
-                  <Text color={'gray.500'} fontSize={'lg'}>
+                  <Text color={'white'} fontSize={'lg'}>
                     Tap into the psychedelic realms of decentralized liquidity management, where you'll find the keys to unlocking new opportunities and possibilities. So embrace the madness, and let the journey begin.
                   </Text>
                 </Stack>
+                <HStack pt={"5vh"}>
+                  <Button 
+                    p={15} 
+                    bg={'lightgreen'} 
+                    minW={100} 
+                    fontWeight={600}>
+                    dApp
+                  </Button>
+                  <Button 
+                    p={15} 
+                    minW={100} 
+                    fontWeight={600} 
+                    background={"black"} 
+                    color={"#1ad000"}>
+                    Read More
+                  </Button>
+                </HStack>
             </Box> 
           </Flex>         
         </Box>

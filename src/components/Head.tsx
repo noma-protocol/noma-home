@@ -42,18 +42,18 @@ return (
                     Decentralized
                   </Text>
                   <br />
-                  <Text color={'lightgreen'} as={'span'}>
+                  <Text color={'#1ad000'} as={'span'}>
                     Money
                   </Text>
                 </Heading>
-                <Text>
+                <Text color={"white"}>
                   Automated tokenomics and permission-less market-making on top of Uniswap V3.
                 </Text>
                 <HStack minW={100}>
-                  <Button p={15} bg={'lightgreen'} minW={100}>
+                  <Button p={15} bg={'lightgreen'} minW={100} fontWeight={600}>
                     dApp
                   </Button>
-                  <Button p={15} minW={100}>
+                  <Button p={15} minW={100} fontWeight={600} background={"black"} color={"#1ad000"}>
                     Docs
                   </Button>
                 </HStack>

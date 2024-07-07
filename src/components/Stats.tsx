@@ -33,8 +33,8 @@ import { isMobile } from "react-device-detect";
                 textAlign={'center'}
                 py={10}
                 mx={'auto'}>
-                Concentrated liquidity<br/>
-                management playground
+                Automated concentrated<br/> 
+                liquidity protocol
               </chakra.h2>
             </Flex>
             <Flex 

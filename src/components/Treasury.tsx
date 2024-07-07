@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Box, Flex, Image, Stack, Heading, Text, List, ListItem } from "@chakra-ui/react"
+import { Box, Flex, Image, Stack, Heading, Text, List, ListItem, Button } from "@chakra-ui/react"
 import { LanguageContext, LanguageContextType } from "../core/LanguageProvider";
 import { isMobile } from "react-device-detect";
 
@@ -22,7 +22,7 @@ return (
                 <Stack spacing={4}>
             <Text
               textTransform={'uppercase'}
-              color={'blue.400'}
+              color={'#1ad000'}
               fontWeight={600}
               fontSize={'sm'}
               p={2}
@@ -31,20 +31,17 @@ return (
               Introducing our
             </Text>
             <Heading alignSelf={'flex-start'}>Trustless Treasury</Heading>
-            <Text fontSize={'lg'}>
-              In DeFi, trust is a luxury we cannot afford. That's why we've built a self regulating trustless treasury protocol for sovereignty that defies conventional wisdom. No intermediaries, no custodians – just pure, unadulterated financial automation.
+            <Text color={'white'} fontSize={'lg'}>
+              Noma is centered around the vision of an autonomous future within non-custodial finance. Protocol-owned-liquidity in Noma handled is managed trustlessly by the treasury at all times. We've built a self regulating trustless treasury protocol for sovereignty that defies conventional wisdom. No intermediaries, no custodians – just pure, unadulterated financial automation.
             </Text>
-          {/* <List>
-            <ListItem>
-              Implements a fair and transparent method for distributing tokens to participants.
-            </ListItem>
-            <ListItem>
-              Utilizes smart contract logic to automate token distribution processes.
-            </ListItem>
-            <ListItem>
-              Ensures equitable access to tokens without bias or discrimination.
-            </ListItem>
-          </List> */}
+            <Button 
+              maxW={"10vw"} 
+              p={15}
+              background={"black"}
+              color={"#1ad000"}
+              fontWeight={600} >
+                Read More
+            </Button>
           </Stack>
             </Box>  
             <Box width={ isMobile ? '0' : '50%' } textAlign={"center"}>

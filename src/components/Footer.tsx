@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
                     <center>
                       <SimpleGrid columns={3} spacing={4}>
                         <Box >
-                        <HStack maxWidth={"fit-content"}>
+                        <HStack maxWidth={"fit-content"} color={"#1ad000"}>
                         <i className="fa-brands fa-discord"></i>
                             <Link 
                               className="discord"
@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
                         </HStack>
                         </Box>
                         <Box>
-                        <HStack  maxWidth={"fit-content"}>
+                        <HStack  maxWidth={"fit-content"} color={"#1ad000"}>
                           <i className="fa-brands fa-github"></i>
                           <Link 
                           className="github"
@@ -42,7 +42,7 @@ const Footer: React.FC = () => {
                         </HStack>
                         </Box>
                         <Box>
-                          <HStack  maxWidth={"fit-content"}>
+                          <HStack  maxWidth={"fit-content"} color={"#1ad000"}>
                             <i className="fa-brands fa-twitter"></i>
                             <Link 
                               className="twitter"

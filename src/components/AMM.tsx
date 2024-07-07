@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Box, Flex, Image, Stack, Heading, Text } from "@chakra-ui/react"
+import { Box, Flex, Image, Stack, Heading, Text, Button } from "@chakra-ui/react"
 import { LanguageContext, LanguageContextType } from "../core/LanguageProvider";
 import { isMobile } from "react-device-detect";
 
@@ -30,7 +30,7 @@ return (
               <Stack spacing={4}>
                 <Text
                   textTransform={'uppercase'}
-                  color={'blue.400'}
+                  color={'#1ad000'}
                   fontWeight={600}
                   fontSize={'sm'}
                   p={2}
@@ -39,9 +39,17 @@ return (
                   Built on top of
                 </Text>
                 <Heading alignSelf={'flex-start'}>Uniswap V3</Heading>
-                <Text color={'gray.500'} fontSize={'lg'}>
+                <Text color={'white'} fontSize={'lg'}>
                   By leveraging the power of concentrated liquidity automated market makers (CLMM), the protocol will generate fees from Uniswap V3 positions and continuously shift the floor price upwards for as long as the pools have trading volume.
                 </Text>
+                <Button 
+                  maxW={"10vw"} 
+                  p={15}
+                  background={"black"}
+                  color={"#1ad000"}
+                  fontWeight={600} >
+                    Read More
+                </Button>
               </Stack>
 
             </Box>  
