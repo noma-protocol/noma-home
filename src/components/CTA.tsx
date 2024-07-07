@@ -31,17 +31,19 @@ return (
                     Tap into the psychedelic realms of decentralized liquidity management, where you'll find the keys to unlocking new opportunities and possibilities. So embrace the madness, and let the journey begin.
                   </Text>
                 </Stack>
-                <HStack pt={"5vh"}>
+                <HStack pt={"3vh"}>
                   <Button 
                     p={15} 
                     bg={'lightgreen'} 
-                    minW={100} 
+                    minW={100}
+                    maxW={"15vh"} 
                     fontWeight={600}>
                     dApp
                   </Button>
                   <Button 
                     p={15} 
-                    minW={100} 
+                    minW={100}
+                    maxW={"15vh"} 
                     fontWeight={600} 
                     background={"black"} 
                     color={"#1ad000"}>

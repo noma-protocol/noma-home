@@ -42,7 +42,7 @@ return (
                     Decentralized
                   </Text>
                   <br />
-                  <Text color={'#1ad000'} as={'span'}>
+                  <Text color={'lightgreen'} as={'span'}>
                     Money
                   </Text>
                 </Heading>
@@ -53,7 +53,7 @@ return (
                   <Button p={15} bg={'lightgreen'} minW={100} fontWeight={600}>
                     dApp
                   </Button>
-                  <Button p={15} minW={100} fontWeight={600} background={"black"} color={"#1ad000"}>
+                  <Button p={15} minW={100} fontWeight={600} background={"black"} color={"lightgreen"}>
                     Docs
                   </Button>
                 </HStack>

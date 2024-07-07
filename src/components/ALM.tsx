@@ -42,7 +42,7 @@ return (
                     - Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore<br/>
                   </Text>
                   <Button 
-                    maxW={"10vw"} 
+                    maxW={"15vh"} 
                     p={15}
                     background={"black"}
                     color={"#1ad000"}

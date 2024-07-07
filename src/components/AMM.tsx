@@ -43,7 +43,8 @@ return (
                   By leveraging the power of concentrated liquidity automated market makers (CLMM), the protocol will generate fees from Uniswap V3 positions and continuously shift the floor price upwards for as long as the pools have trading volume.
                 </Text>
                 <Button 
-                  maxW={"10vw"} 
+                  maxW={"15vh"}
+                  minW={100} 
                   p={15}
                   background={"black"}
                   color={"#1ad000"}

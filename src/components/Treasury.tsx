@@ -35,7 +35,7 @@ return (
               Noma is centered around the vision of an autonomous future within non-custodial finance. Protocol-owned-liquidity in Noma handled is managed trustlessly by the treasury at all times. We've built a self regulating trustless treasury protocol for sovereignty that defies conventional wisdom. No intermediaries, no custodians – just pure, unadulterated financial automation.
             </Text>
             <Button 
-              maxW={"10vw"} 
+              maxW={"15vh"} 
               p={15}
               background={"black"}
               color={"#1ad000"}
