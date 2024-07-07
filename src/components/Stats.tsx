@@ -40,7 +40,6 @@ import { isMobile } from "react-device-detect";
             <Flex 
               direction={isMobile? "column" : "row"}
               maxW={isMobile ? "" : "50%" }
-              color={'#1ad000'}
               mx={'auto'} 
               p={'5vh'} 
               px={{ 

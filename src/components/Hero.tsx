@@ -3,17 +3,7 @@ import { Box, Flex, Image, Stack, Heading, Text, Button, HStack } from "@chakra-
 import { LanguageContext, LanguageContextType } from "../core/LanguageProvider";
 import { isMobile } from "react-device-detect";
 
-const Head: React.FC = () => {
-const ctx = useContext<LanguageContextType>(LanguageContext);
-
-function Head({ title, desc, ...rest }) {
-    return (
-      <Box p={5} shadow='md' borderWidth='1px' {...rest}>
-        <Heading fontSize='xl'>{title}</Heading>
-        <Text mt={4}>{desc}</Text>
-      </Box>
-    )
-  }
+const Hero: React.FC = () => {
 
 return (
     <Box 
@@ -22,10 +12,11 @@ return (
       p={ isMobile ? '8vh' : '10vh' } 
       minH={'100vh'} 
     >
-      <Box p={isMobile ? "10vw" : "5vw"} 
-          flex={1}
-          gap={20} 
-          className="container"
+      <Box 
+        p={isMobile ? "10vw" : "5vw"} 
+        flex={1}
+        gap={20} 
+        className="container"
       >
         <Box className="row align-items-center justify-content-center" >
           <Flex direction={{ base: "column", md: "row" }} align="center" justify="center" width="full">
@@ -60,10 +51,7 @@ return (
               </Stack>
             </Box>  
 
-            <Box 
-              width={ isMobile ? '0' : '50%' } 
-              textAlign={"center"}
-            >
+            <Box width={ isMobile ? '0' : '50%' } textAlign={"center"}>
                 <Image 
                   objectFit={'cover'}
                   src={"https://raw.githubusercontent.com/noma-protocol/assets/main/hands.png"}
@@ -77,4 +65,4 @@ return (
   )
 }
 
-export default Head;
+export default Hero;

@@ -17,7 +17,7 @@ return (
             <Box width={ isMobile ? '0' : '50%' } textAlign={"center"}>
                 <Image 
                     // maxW={'50%'}
-                    src={"https://raw.githubusercontent.com/noma-protocol/assets/main/flat/noma-flat-07.png"}
+                    src={"https://raw.githubusercontent.com/noma-protocol/assets/c90ea6422f6938b3b932466d650d55dda2ee97d0/face.svg"}
                     objectFit={'cover'}
                     w={isMobile ? "100%" : "90%"}
                     visibility={ isMobile ? 'hidden' : 'initial' }
@@ -42,7 +42,7 @@ return (
                     - Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore<br/>
                   </Text>
                   <Button 
-                    maxW={"15vh"} 
+                    maxW={"150px"} 
                     p={15}
                     background={"black"}
                     color={"#1ad000"}

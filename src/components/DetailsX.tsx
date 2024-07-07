@@ -15,7 +15,7 @@ import {
           <Flex
             p={'2vh'}
             style={{
-              backgroundImage: `url('https://i.imgur.com/OOmMxgW.png')`,
+              backgroundImage: `url('https://i.imgur.com/2rOSpuU.png')`,
               backgroundSize: 'cover',
               backgroundPosition: 'center'
             }}
@@ -31,7 +31,7 @@ import {
             >
               
               {/* Feature 1 */}
-                <Stack direction={ isMobile ? 'row' :'column'}>
+                <Stack direction={ isMobile ? 'row' :'column'} backgroundColor={"black"} p={10}>
                   <Box>
                     <Image 
                       src={'https://raw.githubusercontent.com/noma-protocol/assets/main/icon5.png'}
@@ -46,7 +46,7 @@ import {
                 </Stack>
 
               {/* Feature 2 */}
-                <Stack direction={ isMobile ? 'row' :'column'}>
+                <Stack direction={ isMobile ? 'row' :'column'} backgroundColor={"black"} p={10}>
                   <Box>
                     <Image 
                       src={'https://raw.githubusercontent.com/noma-protocol/assets/main/icon3.png'}
@@ -61,7 +61,7 @@ import {
                 </Stack>
 
               {/* Feature 3 */}
-                <Stack direction={ isMobile ? 'row' :'column'}>
+                <Stack direction={ isMobile ? 'row' :'column'} backgroundColor={"black"} p={10}>
                   <Box>
                     <Image 
                       src={'https://raw.githubusercontent.com/noma-protocol/assets/main/icon2.png'}

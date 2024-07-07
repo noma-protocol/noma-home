@@ -8,7 +8,7 @@ import Treasury from "../components/Treasury.tsx";
 import AMM from "../components/AMM.tsx";
 import ALM from "../components/ALM.tsx";
 import CTA from "../components/CTA.tsx";
-import Head from "../components/Head.tsx";
+import Hero from "../components/Hero.tsx";
 import DetailsX from "../components/DetailsX.tsx";
 
 
@@ -16,7 +16,7 @@ const HomePage: React.FC = () => {
   return (
     <>
       <Container>
-        <Head />
+        <Hero />
         <Stats />
         <Treasury />
         <DetailsX />

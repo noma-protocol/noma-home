@@ -3,10 +3,10 @@ import { SimpleGrid, Box, HStack, Center } from '@chakra-ui/react';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="footer-area">
+    <footer>
       <div className="container">
         <div className="row justify-content-center">
-          <div className="col-12 col-md-8 text-center">
+          <div className="col-12 col-md-8 p-10 text-center">
             <div className="footer-items">
               <Center>
                 <p className="nomalogo">Noma Protocol</p>
