@@ -26,12 +26,12 @@ import {
               color={'white'}
               maxW={isMobile ? "" : "50%" }
               mx={'auto'} 
-              padding={'10vh 0'}
+              padding={'20vh 0'}
               fontWeight={'bold'}
             >
               
               {/* Feature 1 */}
-                <Stack direction={ isMobile ? 'row' :'column'} backgroundColor={"black"} p={10}>
+                <Stack direction={ isMobile ? 'row' :'column'} backgroundColor={"black"} p={25}>
                   <Box>
                     <Image 
                       src={'https://raw.githubusercontent.com/noma-protocol/assets/main/icon5.png'}
@@ -39,14 +39,15 @@ import {
                     />
                   </Box>
                   <Box>
+                    <h5>No<br/>Liquidations</h5>
                     <Text>
-                      Noma ensures that the minimum price of the token can be always maintained.   
+                      Loans expiry is determined at issuance with no risk of liquidations regardless of price action.
                     </Text>
                   </Box>  
                 </Stack>
 
               {/* Feature 2 */}
-                <Stack direction={ isMobile ? 'row' :'column'} backgroundColor={"black"} p={10}>
+                <Stack direction={ isMobile ? 'row' :'column'} backgroundColor={"black"} p={25}>
                   <Box>
                     <Image 
                       src={'https://raw.githubusercontent.com/noma-protocol/assets/main/icon3.png'}
@@ -54,14 +55,15 @@ import {
                     />
                   </Box>
                   <Box>
+                    <h5>Only<br/>Up</h5>
                     <Text>
-                      Noma ensures that the minimum price of the token can be always maintained.         
+                      Protocol revenue is injected back into the system to perpetually increase the floor price.         
                     </Text>
                   </Box>
                 </Stack>
 
               {/* Feature 3 */}
-                <Stack direction={ isMobile ? 'row' :'column'} backgroundColor={"black"} p={10}>
+                <Stack direction={ isMobile ? 'row' :'column'} backgroundColor={"black"} p={25}>
                   <Box>
                     <Image 
                       src={'https://raw.githubusercontent.com/noma-protocol/assets/main/icon2.png'}
@@ -69,8 +71,9 @@ import {
                     />
                   </Box>
                   <Box>
+                    <h5>Downside<br/>Protection</h5>
                     <Text>
-                      Noma ensures that the minimum price of the token can be always maintained.         
+                      Protocol liquidity structure guarantees the solvency invariant is always satisfied.
                     </Text>
                   </Box>
                 </Stack>

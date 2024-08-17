@@ -37,9 +37,7 @@ return (
                   </Text>
                   <Heading alignSelf={'flex-start'}>Liquidity Management</Heading>
                   <Text color={'white'} fontSize={'lg'}>
-                    - Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore <br/>
-                    - Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore<br/>
-                    - Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore<br/>
+                    Liquidity rebalancing revolves around two main operations, <i>shift()</i> and <i>slide()</i>. The former can be triggered once the price of the token goes up and is responsible for increasing liquidity and the floor price, while the latter is triggered when the price decreases, moving the discovery position closer to market price. Both operations are permission-less, so anyone can call the functions.
                   </Text>
                   <Button 
                     maxW={"150px"} 

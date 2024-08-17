@@ -28,7 +28,7 @@ return (
                   </Text>
                   <Heading alignSelf={'flex-start'}>Beyond the Horizon: Explore the Unknown</Heading>
                   <Text color={'white'} fontSize={'lg'}>
-                    Tap into the psychedelic realms of decentralized liquidity management, where you'll find the keys to unlocking new opportunities and possibilities. So embrace the madness, and let the journey begin.
+                    Tap into the depths of decentralized liquidity management, where you'll find the keys to unlocking new opportunities and possibilities.
                   </Text>
                 </Stack>
                 <HStack pt={"3vh"}>
