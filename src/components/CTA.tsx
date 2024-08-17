@@ -26,7 +26,7 @@ return (
                     rounded={'md'}>
                     Upcoming Presale
                   </Text>
-                  <Heading alignSelf={'flex-start'}>Bootstrap event and initial distribution</Heading>
+                  <Heading alignSelf={'flex-start'}>Enroll in the bootstrap event</Heading>
                   <Text color={'white'} fontSize={'lg'}>
                     Innovative protocol design and trustless presale mechanism form a synergy to ensure Noma has a fair distribution from the get go. Do not miss the upcoming bootstrap event. Join our community and get all updates.
                   </Text>
