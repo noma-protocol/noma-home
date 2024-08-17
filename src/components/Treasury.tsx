@@ -32,7 +32,7 @@ return (
             </Text>
             <Heading alignSelf={'flex-start'}>Peace of mind</Heading>
             <Text color={'white'} fontSize={'lg'}>
-              Noma ensures that the relation <br /><label style={{fontSize:"25px", fontStyle:"italic", margin:"15px"}}>liquidity capacity {">"} circulating supply</label> <br /> is maintained every time the liquidity is rebalanced. 
+              Noma ensures that the solvency invariant <br /><label style={{fontSize:"25px", fontStyle:"italic", margin:"15px"}}>liquidity capacity {">"} circulating supply</label> <br /> is maintained every time the liquidity is rebalanced. 
              <br /> <br />Through this mechanism the protocol is able to buy back the whole circulating supply, guaranteeing a minimum value for its token price.           </Text>
             <a href="https://noma-protocol.github.io/" target="_blank">
               <Button 

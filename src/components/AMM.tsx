@@ -40,7 +40,7 @@ return (
                 </Text>
                 <Heading alignSelf={'flex-start'}>Uniswap V3</Heading>
                 <Text color={'white'} fontSize={'lg'}>
-                  By leveraging the power of concentrated liquidity automated market makers (CLMM), the protocol will generate fees from Uniswap V3 positions and continuously shift the floor price upwards for as long as the pools have trading volume.
+                  By leveraging the immutability and power of concentrated liquidity automated market makers (CLMM), the protocol will generate fees from Uniswap V3 positions forever.
                 </Text>
                 <a href="https://noma-protocol.github.io/" target="_blank">
                   <Button 

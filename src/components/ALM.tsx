@@ -37,7 +37,7 @@ return (
                   </Text>
                   <Heading alignSelf={'flex-start'}>Reserve Asset</Heading>
                   <Text color={'white'} fontSize={'lg'}>
-                    Liquidity rebalancing revolves around two main operations, <i>shift()</i> and <i>slide()</i>. The former can be triggered once the price of the token goes up and is responsible for increasing liquidity and the floor price, while the latter is triggered when the price decreases, moving the discovery position closer to market price. Both operations are permission-less, so anyone can call the functions.
+                    Noma aims to become a new class of asset with strong fundamentals, enforced through algorithimic rules and immutable design. Times are changing and so is money. Embrace the future with Noma. 
                   </Text>
                   <a href="https://noma-protocol.github.io/" target="_blank">
                     <Button 
