@@ -53,7 +53,7 @@ import { isMobile } from "react-device-detect";
                 stat={"Noma's value tracks ETH regardless of its price, therefore it is free from oracle dependencies. "}/>
               <StatsCard 
                 title={'Capital Efficient'} 
-                stat={"Noma's loans target a collateralization ratio of 1 with 100% capital efficiency and have no liquidations."}/> 
+                stat={"Noma's loans are emitted 1:1 with the collateral IMV yielding 100% capital efficiency without liquidations."}/> 
               <StatsCard 
                 title={"Only Up"} 
                 stat={"Designed to increase the IMV by accruing profits generated from trading directly to the liquidity."}/>
