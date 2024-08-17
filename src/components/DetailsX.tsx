@@ -71,7 +71,7 @@ import {
                     />
                   </Box>
                   <Box>
-                    <h5>Permissionless market-making</h5>
+                    <h5>Permissionless Market Making</h5>
                     <Text>
                     Algorithmic market making strategies to prevent extreme market movements and guarantee the solvency invariant is always satisfied.
                     </Text>

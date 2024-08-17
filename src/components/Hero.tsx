@@ -38,7 +38,7 @@ return (
                   </Text>
                 </Heading>
                 <Text color={"white"}>
-                  Perpetually increasing and guaranteed Intrinsic Minimum Value (IMV) with permission-less market-making on top of Uniswap V3.
+                  Perpetually increasing guaranteed Intrinsic Minimum Value (IMV) with Permissionless Market Making on top of Uniswap V3.
                 </Text>
                 <HStack minW={100}>
                   <Button p={15} bg={'lightgreen'} minW={100} fontWeight={600}>
