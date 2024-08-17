@@ -44,9 +44,10 @@ return (
                   <Button p={15} bg={'lightgreen'} minW={100} fontWeight={600}>
                     dApp
                   </Button>
-                  <Button p={15} minW={100} fontWeight={600} background={"black"} color={"lightgreen"}>
+                  <a href="https://noma-protocol.github.io/">
+<Button p={15} minW={100} fontWeight={600} background={"black"} color={"lightgreen"}>
                     Docs
-                  </Button>
+                  </Button></a>
                 </HStack>
               </Stack>
             </Box>  
