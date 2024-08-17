@@ -28,7 +28,7 @@ return (
                   </Text>
                   <Heading alignSelf={'flex-start'}>Bootstrap event and initial distribution</Heading>
                   <Text color={'white'} fontSize={'lg'}>
-                    Innovative protocol design and trustless presale mechanism form a synergy to ensure Noma has a fair distribution from the get go. Do not miss the upcoming bootstrap event. Join our community and never miss an update.
+                    Innovative protocol design and trustless presale mechanism form a synergy to ensure Noma has a fair distribution from the get go. Do not miss the upcoming bootstrap event. Join our community and get all updates.
                   </Text>
                 </Stack>
                 <HStack pt={"3vh"}>
