@@ -41,7 +41,7 @@ import {
                   <Box>
                     <h5>No<br/>Liquidations</h5>
                     <Text>
-                      Loans expiry is determined at issuance with no risk of liquidations regardless of price action.
+                      Loans are issued at the token intrinsic minimum value, eliminating risk of liquidation and dependency on oracles.
                     </Text>
                   </Box>  
                 </Stack>
@@ -73,7 +73,7 @@ import {
                   <Box>
                     <h5>Downside<br/>Protection</h5>
                     <Text>
-                      Protocol liquidity structure guarantees the solvency invariant is always satisfied.
+                      Algorithmic liquidity structure guarantees the solvency invariant is always satisfied.
                     </Text>
                   </Box>
                 </Stack>
