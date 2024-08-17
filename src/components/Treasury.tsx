@@ -34,14 +34,16 @@ return (
             <Text color={'white'} fontSize={'lg'}>
               Noma is centered around the vision of an autonomous future within non-custodial finance. Protocol-owned-liquidity in Noma handled is managed trustlessly by the treasury at all times. No intermediaries, no custodians – just pure, unadulterated financial automation.
             </Text>
-            <Button 
-              maxW={"150px"} 
-              p={15}
-              background={"black"}
-              color={"#1ad000"}
-              fontWeight={600} >
-                Read More
-            </Button>
+            <a href="https://noma-protocol.github.io/" target="_blank">
+              <Button 
+                maxW={"150px"} 
+                p={15}
+                background={"black"}
+                color={"#1ad000"}
+                fontWeight={600} >
+                  Read More
+              </Button>
+            </a>
           </Stack>
             </Box>  
             <Box width={ isMobile ? '0' : '50%' } textAlign={"center"}>

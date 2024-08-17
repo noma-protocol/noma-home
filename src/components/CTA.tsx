@@ -40,15 +40,17 @@ return (
                     fontWeight={600}>
                     dApp
                   </Button>
-                  <Button 
-                    p={15} 
-                    minW={100}
-                    maxW={"15vh"} 
-                    fontWeight={600} 
-                    background={"black"} 
-                    color={"#1ad000"}>
-                    Read More
-                  </Button>
+                  <a href="https://noma-protocol.github.io/" target="_blank">
+                    <Button
+                      p={15} 
+                      minW={100}
+                      maxW={"15vh"} 
+                      fontWeight={600} 
+                      background={"black"} 
+                      color={"#1ad000"}>
+                      Read More
+                    </Button>`
+                  </a>
                 </HStack>
             </Box> 
           </Flex>         

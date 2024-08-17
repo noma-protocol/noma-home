@@ -39,14 +39,16 @@ return (
                   <Text color={'white'} fontSize={'lg'}>
                     Liquidity rebalancing revolves around two main operations, <i>shift()</i> and <i>slide()</i>. The former can be triggered once the price of the token goes up and is responsible for increasing liquidity and the floor price, while the latter is triggered when the price decreases, moving the discovery position closer to market price. Both operations are permission-less, so anyone can call the functions.
                   </Text>
-                  <Button 
-                    maxW={"150px"} 
-                    p={15}
-                    background={"black"}
-                    color={"#1ad000"}
-                    fontWeight={600} >
-                      Read More
-                  </Button>
+                  <a href="https://noma-protocol.github.io/" target="_blank">
+                    <Button 
+                      maxW={"150px"} 
+                      p={15}
+                      background={"black"}
+                      color={"#1ad000"}
+                      fontWeight={600} >
+                        Read More
+                    </Button>
+                  </a>
                 </Stack>
             </Box> 
           </Flex>         
