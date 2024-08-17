@@ -28,12 +28,12 @@ return (
               p={2}
               alignSelf={'flex-start'}
               rounded={'md'}>
-              Introducing our
+              Noma offers
             </Text>
-            <Heading alignSelf={'flex-start'}>Trustless Treasury</Heading>
+            <Heading alignSelf={'flex-start'}>Peace of mind</Heading>
             <Text color={'white'} fontSize={'lg'}>
-              Noma is centered around the vision of an autonomous future within non-custodial finance. Protocol-owned-liquidity in Noma handled is managed trustlessly by the treasury at all times. No intermediaries, no custodians – just pure, unadulterated financial automation.
-            </Text>
+              Noma ensures that the relation <br /><label style={{fontSize:"25px", fontStyle:"italic", margin:"15px"}}>capacity {">"} circulating</label> <br /> is maintained every time the liquidity is rebalanced. 
+             <br /> <br />Through this mechanism the protocol is able to buy back the whole circulating supply, guaranteeing a minimum value for its token price.           </Text>
             <a href="https://noma-protocol.github.io/" target="_blank">
               <Button 
                 maxW={"150px"} 

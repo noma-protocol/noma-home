@@ -30,15 +30,15 @@ return (
                     lg: '5xl' }}
                 >
                   <Text as={'span'}>
-                    Decentralized
+                    Money with
                   </Text>
                   <br />
                   <Text color={'lightgreen'} as={'span'}>
-                    Money
+                    Special Powers
                   </Text>
                 </Heading>
                 <Text color={"white"}>
-                  Automated tokenomics and permission-less market-making on top of Uniswap V3.
+                  Perpetually increasing and guaranteed Intrinsic Minimum Value (IMV) with permission-less market-making on top of Uniswap V3.
                 </Text>
                 <HStack minW={100}>
                   <Button p={15} bg={'lightgreen'} minW={100} fontWeight={600}>

@@ -33,8 +33,8 @@ import { isMobile } from "react-device-detect";
                 textAlign={'center'}
                 py={10}
                 mx={'auto'}>
-                Automated concentrated<br/> 
-                liquidity protocol
+                A design<br/> 
+                that transcends limitations
               </chakra.h2>
             </Flex>
             <Flex 
@@ -49,14 +49,14 @@ import { isMobile } from "react-device-detect";
               }}               
             >
               <StatsCard
-                title={'Trustless'} 
-                stat={'Treasury'}/>
+                title={'Oracle Free'} 
+                stat={"Noma's value tracks ETH regardless of its price, therefore it is free from oracle dependencies. "}/>
               <StatsCard 
-                title={'Automated'} 
-                stat={'Liquidity'}/> 
+                title={'Capital Efficient'} 
+                stat={"Noma's loans target a collateralization ratio of 1 with 100% capital efficiency and have no liquidations."}/> 
               <StatsCard 
-                title={'Built on'} 
-                stat={'Uniswap V3'}/>
+                title={"Only Up"} 
+                stat={"Designed to increase the IMV by accruing profits generated from trading directly to the liquidity."}/>
           </Flex>          
         </>
     );

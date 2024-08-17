@@ -33,9 +33,9 @@ return (
                     p={2}
                     alignSelf={'flex-start'}
                     rounded={'md'}>
-                    Automated
+                    Future proof
                   </Text>
-                  <Heading alignSelf={'flex-start'}>Liquidity Management</Heading>
+                  <Heading alignSelf={'flex-start'}>Reserve Asset</Heading>
                   <Text color={'white'} fontSize={'lg'}>
                     Liquidity rebalancing revolves around two main operations, <i>shift()</i> and <i>slide()</i>. The former can be triggered once the price of the token goes up and is responsible for increasing liquidity and the floor price, while the latter is triggered when the price decreases, moving the discovery position closer to market price. Both operations are permission-less, so anyone can call the functions.
                   </Text>
