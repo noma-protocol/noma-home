@@ -24,22 +24,14 @@ return (
                     p={2}
                     alignSelf={'flex-start'}
                     rounded={'md'}>
-                    Stay tuned
+                    Upcoming Presale
                   </Text>
-                  <Heading alignSelf={'flex-start'}>Beyond the Horizon: Explore the Unknown</Heading>
+                  <Heading alignSelf={'flex-start'}>Bootstrap event and initial distribution</Heading>
                   <Text color={'white'} fontSize={'lg'}>
-                    Tap into the depths of decentralized liquidity management, where you'll find the keys to unlocking new opportunities and possibilities.
+                    Innovative protocol design and trustless presale mechanism form a synergy to ensure Noma has a fair distribution from the get go. Do not miss the upcoming bootstrap event. Join our community and never miss an update.
                   </Text>
                 </Stack>
                 <HStack pt={"3vh"}>
-                  <Button 
-                    p={15} 
-                    bg={'lightgreen'} 
-                    minW={100}
-                    maxW={"15vh"} 
-                    fontWeight={600}>
-                    dApp
-                  </Button>
                   <a href="https://noma-protocol.github.io/" target="_blank">
                     <Button
                       p={15} 
@@ -48,8 +40,8 @@ return (
                       fontWeight={600} 
                       background={"black"} 
                       color={"#1ad000"}>
-                      Read More
-                    </Button>`
+                      Join now
+                    </Button>
                   </a>
                 </HStack>
             </Box> 

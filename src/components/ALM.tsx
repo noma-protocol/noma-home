@@ -46,7 +46,7 @@ return (
                       background={"black"}
                       color={"#1ad000"}
                       fontWeight={600} >
-                        Read More
+                        Learn how
                     </Button>
                   </a>
                 </Stack>
