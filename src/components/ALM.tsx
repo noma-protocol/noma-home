@@ -37,7 +37,7 @@ return (
                   </Text>
                   <Heading alignSelf={'flex-start'}>Reserve Asset</Heading>
                   <Text color={'white'} fontSize={'lg'}>
-                    Noma aims to become a new class of asset with strong fundamentals, enforced through algorithimic rules and immutable design. Times are changing and so is money. Embrace the future with Noma. 
+                    Noma is a new class of asset with strong fundamentals, enforced through algorithimic rules and immutable design. Times are changing and so is money. Embrace the future with Noma. 
                   </Text>
                   <a href="https://noma-protocol.github.io/" target="_blank">
                     <Button 
