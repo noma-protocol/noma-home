@@ -41,13 +41,19 @@ return (
                   Perpetually increasing guaranteed Intrinsic Minimum Value (IMV) with Permissionless Market Making on top of Uniswap V3.
                 </Text>
                 <HStack minW={100}>
-                  <Button p={15} bg={'lightgreen'} minW={100} fontWeight={600}>
-                    dApp
-                  </Button>
-                  <a href="https://noma-protocol.github.io/">
-<Button p={15} minW={100} fontWeight={600} background={"black"} color={"lightgreen"}>
-                    Docs
-                  </Button></a>
+                <Button p={15} bg={'lightgreen'} minW={100} fontWeight={600}>
+                  <div style={{ textAlign: 'center' }}>
+                    <div>Go to dApp</div>
+                    <div style={{ fontSize: '10px', marginTop: '5px', color:"gray" }}>Coming Soon</div>
+                  </div>
+                </Button>
+                {/* <Button p={15} bg={'black'} minW={100} fontWeight={600} color={"lightgreen"}>
+                  <div style={{ textAlign: 'center' }}>
+                    <div>Docs</div>
+                    <div style={{ fontSize: '10px', marginTop: '5px' }}>Coming Soon</div>
+                  </div>
+                </Button> */}
+
                 </HStack>
               </Stack>
             </Box>  
