@@ -25,19 +25,19 @@ const Header: React.FC = () => {
           {/* Remove mx-auto class and add justify-content-start to align items to the left */}
           <ul className="navbar-nav items justify-content-start " >
             <li className="nav-item">
-              <Link className="nav-link" to="https://github.com/noma-protocol" target="_blank">
+              <Link className="nav-link"  target="_blank" href="https://github.com/noma-protocol" isExternal>
                   Github
               </Link>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="https://nomaprotocol.medium.com/" target="_blank">
+              <Link className="nav-link" href="https://nomaprotocol.medium.com/" target="_blank" isExternal>
                   Medium
               </Link>
             </li>        
 
             <li className="nav-item">
-              <Link className="nav-link" to="https://discord.gg/cFZDeS3cQc" target="_blank">
+              <Link className="nav-link" href="https://discord.gg/NjgTBQss" target="_blank" isExternal>
                   Discord
               </Link>
             </li>                         
