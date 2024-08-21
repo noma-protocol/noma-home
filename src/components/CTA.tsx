@@ -32,7 +32,7 @@ return (
                   </Text>
                 </Stack>
                 <HStack pt={"3vh"}>
-                  <a href="https://noma-protocol.github.io/" target="_blank">
+                  <a href="https://discord.com/invite/NjgTBQss" target="_blank">
                     <Button
                       p={15} 
                       minW={100}
