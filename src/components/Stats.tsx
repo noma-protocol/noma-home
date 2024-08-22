@@ -28,36 +28,36 @@ import { isMobile } from "react-device-detect";
   export default function Stats() {
     return (
         <>
-            <Flex>
-              <chakra.h2
-                textAlign={'center'}
-                py={10}
-                mx={'auto'}>
-                A design<br/> 
-                that transcends limitations
-              </chakra.h2>
-            </Flex>
-            <Flex 
-              direction={isMobile? "column" : "row"}
-              maxW={isMobile ? "" : "50%" }
-              mx={'auto'} 
-              p={'5vh'} 
-              px={{ 
-                  base: 2, 
-                  sm: 12, 
-                  md: 17 
-              }}               
-            >
-              <StatsCard
-                title={'Oracle Free'} 
-                stat={"Noma's value tracks ETH regardless of its price and it's free from oracle dependencies. "}/>
-              <StatsCard 
-                title={'Capital Efficient'} 
-                stat={"Noma's loans are emitted 1:1 with the collateral's IMV, yielding 100% capital efficiency without liquidations."}/> 
-              <StatsCard 
-                title={"Only Up"} 
-                stat={"Designed to increase the IMV by accruing profits generated from trading directly to the liquidity."}/>
-          </Flex>          
+          <Flex>
+            <chakra.h2
+              textAlign={'center'}
+              py={10}
+              mx={'auto'}>
+              Protocol design<br/> 
+              that transcends limitations
+            </chakra.h2>
+          </Flex>
+          <Flex 
+            direction={isMobile? "column" : "row"}
+            maxW={isMobile ? "" : "50%" }
+            mx={'auto'} 
+            p={'5vh'} 
+            px={{ 
+                base: 2, 
+                sm: 12, 
+                md: 17 
+            }}               
+          >
+            <StatsCard
+              title={'Oracle Free'} 
+              stat={"Noma's value tracks ETH regardless of its price and it's free from oracle dependencies. "}/>
+            <StatsCard 
+              title={'Capital Efficient'} 
+              stat={"Noma's loans are emitted 1:1 with the collateral's IMV, yielding 100% capital efficiency without liquidations."}/> 
+            <StatsCard 
+              title={"Only Up"} 
+              stat={"Designed to increase the IMV by accruing profits generated from trading directly to the liquidity."}/>
+        </Flex>          
         </>
     );
   }
