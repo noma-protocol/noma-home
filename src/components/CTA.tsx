@@ -32,7 +32,12 @@ return (
                   </Text>
                 </Stack>
                 <HStack pt={"3vh"}>
-                  <a href="https://discord.com/invite/NjgTBQss" target="_blank">
+                  <a href="https://nomaprotocol.medium.com/announcing-noma-ecafef785e34" target="_blank">
+                    <Button p={15} minW={100} fontWeight={600} background={"black"} color={"lightgreen"}>
+                        Read our <br />announcement
+                    </Button>
+                  </a>
+                  <a href="https://discord.gg/nomaprotocol" target="_blank">
                     <Button
                       p={15} 
                       minW={100}
@@ -40,7 +45,7 @@ return (
                       fontWeight={600} 
                       background={"black"} 
                       color={"#1ad000"}>
-                      Join now
+                      Join our <br />Community
                     </Button>
                   </a>
                 </HStack>

@@ -37,7 +37,7 @@ const Header: React.FC = () => {
             </li>        
 
             <li className="nav-item">
-              <Link className="nav-link" href="https://discord.gg/NjgTBQss" target="_blank" isExternal>
+              <Link className="nav-link" href="https://discord.gg/nomaprotocol" target="_blank" isExternal>
                   Discord
               </Link>
             </li>                         

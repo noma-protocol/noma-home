@@ -1,11 +1,9 @@
-import React, { useContext } from "react";
-import { Box, Flex, Image, Stack, Heading, Text, Button, HStack } from "@chakra-ui/react"
-import { LanguageContext, LanguageContextType } from "../core/LanguageProvider";
+import React from "react";
+import { Box, Flex, Image, Stack, Heading, Text, Button, HStack } from "@chakra-ui/react";
 import { isMobile } from "react-device-detect";
 
 const Hero: React.FC = () => {
-
-return (
+  return (
     <Box 
       alignContent={'center'}
       as="section" 
@@ -38,25 +36,22 @@ return (
                   </Text>
                 </Heading>
                 <Text color={"white"}>
-                  Perpetually increasing guaranteed Intrinsic Minimum Value (IMV) with Permissionless Market Making on top of Uniswap V3.
+                  Perpetually increasing and guaranteed Intrinsic Minimum Value (IMV) with permission-less market-making on top of Uniswap V3.
                 </Text>
-                <HStack minW={100}>
+                <HStack minW={100} justify={{ base: 'center', md: 'flex-start' }}>
                 <Button p={15} bg={'lightgreen'} minW={100} fontWeight={600}>
                   <div style={{ textAlign: 'center' }}>
                     <div>Go to dApp</div>
-                    <div style={{ fontSize: '10px', marginTop: '5px', color:"gray" }}>Coming Soon</div>
+                    <div style={{ fontSize: '10px', marginTop: '5px', color: "gray" }}>Coming Soon</div>
                   </div>
                 </Button>
-                {/* <Button p={15} bg={'black'} minW={100} fontWeight={600} color={"lightgreen"}>
-                  <div style={{ textAlign: 'center' }}>
-                    <div>Docs</div>
-                    <div style={{ fontSize: '10px', marginTop: '5px' }}>Coming Soon</div>
-                  </div>
-                </Button> */}
-
-                </HStack>
+                <a href="https://nomaprotocol.medium.com/announcing-noma-ecafef785e34" target="_blank">
+                  <Button p={15} minW={100} fontWeight={600} background={"black"} color={"lightgreen"}>
+                      Read our <br />announcement
+                  </Button></a>              
+              </HStack>
               </Stack>
-            </Box>  
+            </Box>   
 
             <Box width={ isMobile ? '0' : '50%' } textAlign={"center"}>
                 <Image 
@@ -68,8 +63,8 @@ return (
           </Flex>         
         </Box>
       </Box>
-    </Box>
-  )
+    </Box>               
+  );
 }
 
 export default Hero;
