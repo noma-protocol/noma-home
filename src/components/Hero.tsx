@@ -39,16 +39,17 @@ const Hero: React.FC = () => {
                   Perpetually increasing and guaranteed Intrinsic Minimum Value (IMV) with permission-less market-making on top of Uniswap V3.
                 </Text>
                 <HStack minW={100} justify={{ base: 'center', md: 'flex-start' }}>
-                <Button p={15} bg={'lightgreen'} minW={100} fontWeight={600} isDisabled>
+                  <a href="https://nomaprotocol.medium.com/announcing-noma-ecafef785e34" target="_blank">
+                    <Button p={15} minW={100} fontWeight={600} background={"black"} color={"lightgreen"}>
+                        Read our <br />announcement
+                    </Button>
+                  </a>              
+                  <Button p={15} bg={'lightgreen'} minW={100} fontWeight={600} isDisabled>
                   <div style={{ textAlign: 'center' }}>
                     <div>Go to dApp</div>
                     <div style={{ fontSize: '10px', marginTop: '5px', color: "gray" }}>Coming Soon</div>
                   </div>
-                </Button>
-                <a href="https://nomaprotocol.medium.com/announcing-noma-ecafef785e34" target="_blank">
-                  <Button p={15} minW={100} fontWeight={600} background={"black"} color={"lightgreen"}>
-                      Read our <br />announcement
-                  </Button></a>              
+                </Button>                  
               </HStack>
               </Stack>
             </Box>   
