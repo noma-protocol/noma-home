@@ -39,7 +39,7 @@ const Hero: React.FC = () => {
                   Perpetually increasing and guaranteed Intrinsic Minimum Value (IMV) with permission-less market-making on top of Uniswap V3.
                 </Text>
                 <HStack minW={100} justify={{ base: 'center', md: 'flex-start' }}>
-                <Button p={15} bg={'lightgreen'} minW={100} fontWeight={600}>
+                <Button p={15} bg={'lightgreen'} minW={100} fontWeight={600} isDisabled>
                   <div style={{ textAlign: 'center' }}>
                     <div>Go to dApp</div>
                     <div style={{ fontSize: '10px', marginTop: '5px', color: "gray" }}>Coming Soon</div>
