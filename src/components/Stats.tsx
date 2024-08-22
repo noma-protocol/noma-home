@@ -55,7 +55,7 @@ import { isMobile } from "react-device-detect";
               title={'Capital Efficient'} 
               stat={"Noma's loans are emitted 1:1 with the collateral's IMV, yielding 100% capital efficiency without liquidations."}/> 
             <StatsCard 
-              title={"Only Up"} 
+              title={"Up Only"} 
               stat={"Designed to increase the IMV by accruing profits generated from trading directly to the liquidity."}/>
         </Flex>          
         </>
