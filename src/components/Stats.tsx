@@ -50,7 +50,7 @@ import { isMobile } from "react-device-detect";
                 Enroll in the <Text color={'lightgreen'} as={'span'}>bootstrap</Text> event
               </chakra.h2>
               <Text fontSize={isMobile ? "small" : "medium"} w={isMobile ? "90%" : "60%"} align={"left"}>
-                A presale will be conducted in order to bootstrap the floor liquidity and fund initial operations. Details of the operation will be communicated over our social network and media channelsk, including this web page.
+                A presale will be conducted in order to bootstrap the floor liquidity and fund initial operations. Details of the operation will be communicated over our social network and media channels, including this web page.
               </Text>
               <Flex
                 direction={isMobile ? "column" : "row"}
