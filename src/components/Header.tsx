@@ -1,15 +1,15 @@
 import React, { useContext } from "react";
-// import { LanguageContext, LanguageContextType } from "../core/LanguageProvider";
-// import { useWeb3Modal } from "@web3modal/wagmi/react";
-// import { useAccount } from "wagmi";
+import { LanguageContext, LanguageContextType } from "../core/LanguageProvider";
+import { useWeb3Modal } from "@web3modal/wagmi/react";
+import { useAccount } from "wagmi";
 import Logo from "../assets/images/noma_logo_transparent.png";
 // import { isMobile } from 'react-device-detect';
 import { Link, Image } from '@chakra-ui/react';
 
 const Header: React.FC = () => {
-  // const ctx = useContext<LanguageContextType>(LanguageContext);
-  // const { open } = useWeb3Modal();
-  // const { address, isConnected } = useAccount();
+  const ctx = useContext<LanguageContextType>(LanguageContext);
+  const { open } = useWeb3Modal();
+  const { address, isConnected } = useAccount();
 
   return (
     <header id="header">
@@ -25,7 +25,7 @@ const Header: React.FC = () => {
           {/* Remove mx-auto class and add justify-content-start to align items to the left */}
           <ul className="navbar-nav items justify-content-start " >
             <li className="nav-item">
-              <Link className="nav-link"  target="_blank" href="https://github.com/noma-protocol" isExternal>
+              <Link className="nav-link"  target="_blank" href="https://github.com/noma-protocol" isExternal >
                   Github
               </Link>
             </li>
@@ -43,8 +43,7 @@ const Header: React.FC = () => {
             </li>                         
           </ul>
 
-          {/* Wallet Connect */}
-          {/* <ul className="navbar-nav action">
+          <ul className="navbar-nav action">
             <li className="nav-item ml-2">
               <a
                 className="btn ml-lg-auto btn-bordered-green"
@@ -60,7 +59,7 @@ const Header: React.FC = () => {
                 </p>
               </a>
             </li>
-          </ul> */}
+          </ul>
 
           <ul className="navbar-nav toggle">
             <li className="nav-item">
@@ -133,7 +132,7 @@ const Header: React.FC = () => {
                     </li>
 
                     {/* Wallet Connect */}
-                    {/* <li
+                    <li
                       className="nav-item"
                       data-bs-dismiss="modal"
                       style={{ fontSize: "20px", marginTop:"20px"}}
@@ -149,7 +148,7 @@ const Header: React.FC = () => {
                           ? "Wallet Connect"
                           : "Conectar billetera"}
                       </a>
-                    </li> */}
+                    </li>
 
                   </ul>
                 </div>
