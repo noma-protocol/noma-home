@@ -52,7 +52,7 @@ import { isMobile } from "react-device-detect";
                 Enroll in the <Text color={'lightgreen'} as={'span'}>bootstrap</Text> event
               </chakra.h2>
               <Text fontSize={isMobile ? "small" : "medium"} w={isMobile ? "90%" : "60%"} align={"left"}>                 
-                Read our <a href="https://medium.com/@nomaprotocol/bootstrap-event-49c1ad496ab6" target="_new">Bootstrap event announcement</a> and subscribe to the whitelist now. Join our Discord server and follow the instructions to participate!
+                Read our <a href="https://medium.com/@nomaprotocol/bootstrap-event-49c1ad496ab6" target="_new"><b style={{fontSize:"16px"}}>Bootstrap event announcement</b></a> and subscribe to the whitelist now. Join our Discord server and follow the instructions to participate!
               </Text>
                 <Flex
                   direction={isMobile ? "column" : "row"}
