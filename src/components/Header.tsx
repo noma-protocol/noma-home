@@ -145,7 +145,7 @@ const Header: React.FC = () => {
                         {isConnected
                           ? `${address?.slice(0, 6)}...${address?.slice(-6)}`
                           : !ctx.isSpanishCountry
-                          ? "Wallet Connect"
+                          ? "Connect Wallet"
                           : "Conectar billetera"}
                       </a>
                     </li>
