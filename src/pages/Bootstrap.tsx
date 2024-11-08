@@ -10,7 +10,7 @@ const Bootstrap: React.FC = () => {
 
   // Function to handle the check subscription button click
   const checkSubscription = async () => {
-    const url = `http://bootstrap.noma.money/get-subscription?address=${address}`;
+    const url = `https://bootstrap.noma.money/get-subscription?address=${address}`;
 
     try {
         const response = await fetch(url, {
