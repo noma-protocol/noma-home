@@ -28,16 +28,16 @@ return (
                   </Text>
                   <Heading alignSelf={'flex-start'}>Enroll in the bootstrap event</Heading>
                   <Text color={'white'} fontSize={'lg'}>
-                    Innovative protocol design and trustless presale mechanism form a synergy to ensure Noma has a fair distribution from the get go. Do not miss the upcoming bootstrap event. Join our community and get all updates.
+                    Innovative protocol design and trustless distribution mechanism form a synergy to ensure Noma has a fair distribution from the get go. Do not miss the upcoming bootstrap event. Join our community and get all updates.
                   </Text>
                 </Stack>
                 <HStack pt={"3vh"}>
-                  <a href="https://nomaprotocol.medium.com/announcing-noma-ecafef785e34" target="_blank">
+                  <a href="https://nomaprotocol.medium.com/bootstrap-event-49c1ad496ab6" onClick={()=>gaEventTracker('read_announcement')} target="_blank">
                     <Button p={15} minW={100} fontWeight={600} background={"black"} color={"lightgreen"}>
                         Read our <br />announcement
                     </Button>
                   </a>
-                  <a href="https://discord.gg/nomaprotocol" target="_blank">
+                  <a href="https://discord.gg/nomaprotocol" onClick={()=>gaEventTracker('join_community')} target="_blank">
                     <Button
                       p={15} 
                       minW={100}

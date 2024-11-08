@@ -30,7 +30,8 @@ import { isMobile } from "react-device-detect";
         <>
           <Box
             w="100vw"
-            h="100vh"
+            h="200vh"
+            minH="30vh"
             bg="gray.800"
             color="white"
             display="flex"
@@ -46,21 +47,32 @@ import { isMobile } from "react-device-detect";
             backgroundSize={"100%"}
           >
           <Flex direction="column" align="center" justify="center" w="full">
+              <br />
               <chakra.h2 fontSize={isMobile ? "2xl" : "4xl"} mt={isMobile ? 120 : 60}>
                 Enroll in the <Text color={'lightgreen'} as={'span'}>bootstrap</Text> event
               </chakra.h2>
-              <Text fontSize={isMobile ? "small" : "medium"} w={isMobile ? "90%" : "60%"} align={"left"}>
-                A presale will be conducted in order to bootstrap the floor liquidity and fund initial operations. Details of the operation will be communicated over our social network and media channels, including this web page.
+              <Text fontSize={isMobile ? "small" : "medium"} w={isMobile ? "90%" : "60%"} align={"left"}>                 
+                Read our <a href="https://medium.com/@nomaprotocol/bootstrap-event-49c1ad496ab6" target="_new">Bootstrap event announcement</a> and subscribe to the whitelist now. Join our Discord server and follow the instructions to participate!
               </Text>
-              <Flex
-                direction={isMobile ? "column" : "row"}
-                gap={4}
-                w={isMobile ? "full" : "auto"}
-              >
-                <a href="https://discord.gg/nomaprotocol" target="_blank">
-                <Button p={15} minW={100} fontWeight={600} background={"black"} color={"lightgreen"} mb={isMobile ? 120 : 60} mt={20}>
-                    Get whitelisted
-                </Button>
+                <Flex
+                  direction={isMobile ? "column" : "row"}
+                  gap={4}
+                  w={isMobile ? "full" : "auto"}
+                >
+                  <a href="https://discord.gg/nomaprotocol" target="_blank" >
+                  <Button 
+                    p={15} minW={100} 
+                    fontWeight={600} 
+                    background={"black"} 
+                    color={"lightgreen"} 
+                    mb={isMobile ? 120 : 60} 
+                    mt={20} 
+                    onClick={()=>gaEventTracker('join_discord')} 
+                    >
+                      Get whitelisted
+                    </Button>
+                  <br /> 
+                  <br />
                 </a>
               </Flex>
             </Flex>
