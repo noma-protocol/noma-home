@@ -107,7 +107,6 @@ const Bootstrap: React.FC = () => {
               spacing={10} 
               w="full" 
               maxW={{ base: "80vw", md: "60vw", lg: "50vw" }} 
-              border="1px solid" 
               p={4} 
               borderRadius="md"
             >
@@ -122,7 +121,7 @@ const Bootstrap: React.FC = () => {
                   {subscriptionData ? (
                     <Text>You are already subscribed</Text>
                   ) : (
-                    isConnected && <Text>{error || "You are not yet subscribed"}</Text>
+                    isConnected && <Text>{error}</Text> // Show error only once if connected
                   )}
                 </Flex>
               </Box>
@@ -141,20 +140,15 @@ const Bootstrap: React.FC = () => {
                 <Text color={taskMessage.includes("Error") ? "red.400" : "green.400"}>{taskMessage}</Text>
               </Box>
             )}
-
-            <Box mt={10} fontSize={{ base: "sm", md: "md" }}>
-              {error && <Text color="red.400">{error}</Text>}
-            </Box>
         </VStack>
       </Box>            
 
       <Box 
-        as="section" 
         className="content-area" 
         display="block" 
         p={{ base: '4vh', md: '8vh' }} 
         my={10}
-        h="20vh"
+        h="5vh"
       >
         <Box className="container"></Box>
       </Box>     
