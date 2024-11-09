@@ -16,14 +16,21 @@ const Header: React.FC = () => {
       <nav className="navbar navbar-expand navbar-fixed-top" >
         <div className="container header">
           
+        <Link href="/" >
+
           <Image
             src={Logo}
             alt="Noma Protocol"
             style={{ width: "50px", height: "50px" }}
           />
-          
+          </Link>
           {/* Remove mx-auto class and add justify-content-start to align items to the left */}
           <ul className="navbar-nav items justify-content-start " >
+          <li className="nav-item">
+              <Link className="nav-link" href="/bootstrap">
+                  Bootstrap
+              </Link>
+            </li>
             <li className="nav-item">
               <Link className="nav-link"  target="_blank" href="https://github.com/noma-protocol" isExternal >
                   Github
