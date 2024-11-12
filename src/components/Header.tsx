@@ -107,7 +107,15 @@ const Header: React.FC = () => {
                         NOMA
                       </Link> */}
                     </li>
-
+                    <li
+                      className="nav-item"
+                      data-bs-dismiss="modal"
+                      style={{ fontSize: "20px", marginTop:"20px"}}
+                    >
+                      <a className="btn ml-lg-auto btn-bordered-white" href="/bootstrap" target="_blank">
+                        Github
+                      </a>
+                    </li>
                     <li
                       className="nav-item"
                       data-bs-dismiss="modal"
