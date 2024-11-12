@@ -147,7 +147,7 @@ const Bootstrap: React.FC = () => {
             </Box>
             <Box>
               <Text fontSize="md" color="gray.500">
-                Join the whitelist to participate in the event and earn $NOMA points. Seates are limited so secure your spot now!
+                Join the whitelist to participate in the event and earn $NOMA points. Seats are limited so secure your spot now!
               </Text>
             </Box>
           </SimpleGrid>
