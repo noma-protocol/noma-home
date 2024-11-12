@@ -113,7 +113,7 @@ const Header: React.FC = () => {
                       style={{ fontSize: "20px", marginTop:"20px"}}
                     >
                       <a className="btn ml-lg-auto btn-bordered-white" href="/bootstrap" target="_blank">
-                        Github
+                        Bootstrap
                       </a>
                     </li>
                     <li
