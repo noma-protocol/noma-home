@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, VStack, Box, SimpleGrid, HStack, Heading, Text, Button } from "@chakra-ui/react";
 import { useAccount } from "wagmi";
 import { isMobile } from "react-device-detect";
+import { CopyIcon } from "@chakra-ui/icons";
 
 const Bootstrap: React.FC = () => {
   const { address, isConnected } = useAccount();
@@ -9,9 +10,17 @@ const Bootstrap: React.FC = () => {
   const [error, setError] = useState(""); // Frontend error messages
   const [apiMessage, setApiMessage] = useState(""); // Success messages from backend
   const [apiError, setApiError] = useState(""); // Error messages from backend
-  const [isVerified, setIsVerified] = useState(false);
+  // const [isVerified, setIsVerified] = useState(false);
   const [isTaskEndpoint, setIsTaskEndpoint] = useState(false);
   const [loading, setLoading] = useState(false); // Add a loading state to manage the loading indicator
+  const [hasCopied, setHasCopied] = useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(apiMessage).then(() => {
+      setHasCopied(true);
+      setTimeout(() => setHasCopied(false), 2000); // Reset after 2 seconds
+    });
+  };
 
   useEffect(() => {
     const checkSubscription = async () => {
@@ -36,7 +45,7 @@ const Bootstrap: React.FC = () => {
         if (data.error) {
           setSubscriptionData(null);
           setError(isConnected 
-            ? "You are not yet subscribed. Join our <b><a href='https://discord.gg/nomaprotocol' target='_blank' rel='noopener noreferrer'>Discord server</a></b> to participate." 
+            ? "You are not yet subscribed. <br /><br />Join our <b><a href='https://discord.gg/nomaprotocol' target='_blank' rel='noopener noreferrer'>Discord server</a></b> to participate!" 
             : "");
         } else {
           setSubscriptionData(data);
@@ -224,7 +233,27 @@ const Bootstrap: React.FC = () => {
                 )}
                 {apiMessage && !loading && (
                   <Text color={isTaskEndpoint ? "white" : "#48BB78"} fontWeight="semibold">
-                    {isTaskEndpoint ? <Text>Please post this text on X/Twitter to complete your task:</Text> : ""}{<Box mt={10}><i>{apiMessage}</i></Box>}
+                    {isTaskEndpoint ? <Text>Please post this text on X/Twitter to complete your task:</Text> : ""}{<Box mt={10}><i>{apiMessage}</i>
+                    <Box mt={4} display="flex" alignItems="center">
+                    <Button
+                    mt={10}
+                    minW={120}
+                    onClick={handleCopy}
+                    colorScheme="gray"
+                    variant="ghost"
+                    leftIcon={<CopyIcon />}
+                    bg="transparent"  
+                    borderRadius={10}    
+                    border="2px solid"     
+                    color="gray"           
+                    _hover={{ bg: "rgba(0, 0, 255, 0.1)" }} 
+                    _active={{ bg: "rgba(0, 0, 255, 0.2)" }} 
+                  >
+                    {hasCopied ? "Copied!" : "Copy"}
+                  </Button>
+
+                    </Box>
+                    </Box>}
                     {isTaskEndpoint ? <Box mt={20}>Once done, click on the "verify task" button or use the "@BootstrapBot verify task" command on Discord to complete the process</Box> : ""}
                   </Text>
                 )}
