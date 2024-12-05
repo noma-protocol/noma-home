@@ -6,9 +6,12 @@ import { isMobile } from "react-device-detect";
 const Bootstrap: React.FC = () => {
   const { address, isConnected } = useAccount();
   const [subscriptionData, setSubscriptionData] = useState(null);
-  const [error, setError] = useState("");
-  const [message, setMessage] = useState(""); // Combined message state for task and verification messages
+  const [error, setError] = useState(""); // Frontend error messages
+  const [apiMessage, setApiMessage] = useState(""); // Success messages from backend
+  const [apiError, setApiError] = useState(""); // Error messages from backend
   const [isVerified, setIsVerified] = useState(false);
+  const [isTaskEndpoint, setIsTaskEndpoint] = useState(false);
+  const [loading, setLoading] = useState(false); // Add a loading state to manage the loading indicator
 
   useEffect(() => {
     const checkSubscription = async () => {
@@ -50,9 +53,12 @@ const Bootstrap: React.FC = () => {
     checkSubscription();
   }, [address, isConnected]);
 
+
   const handleGetTask = async () => {
     if (!address) return;
-
+    setIsTaskEndpoint(true);  // Set isTaskEndpoint to true before the task call.
+    setLoading(true);  // Set loading to true to prevent premature state updates
+  
     const url = `https://bootstrap.noma.money/task?address=${address}`;
     try {
       const response = await fetch(url, {
@@ -61,32 +67,45 @@ const Bootstrap: React.FC = () => {
           'Content-Type': 'application/json',
         }
       });
-
+  
       if (!response.ok) {
         throw new Error(`Server returned ${response.status}`);
       }
-
+  
       const data = await response.json();
-      setMessage(data.error || data.message); // Set the combined message
+      if (data.error) {
+        setApiError(data.error);
+        setApiMessage("");
+      } else {
+        setApiMessage(data.message);
+        setApiError("");
+      }
       console.log("Task data:", data);
     } catch (error) {
       console.error("Error fetching task:", error);
-      setMessage("Error retrieving task.");
+      setApiError("Error retrieving task.");
+      setApiMessage("");
+    } finally {
+      setLoading(false);  // Reset loading state after the API call completes
     }
   };
-
+  
   const handleVerifyTask = async () => {
     if (!address || !subscriptionData) return;
-
+    setIsTaskEndpoint(false); // Reset to false for white color on success
+    setLoading(true);
+  
     const lastTaskTime = new Date(subscriptionData.lastTask).getTime();
     const currentTime = Date.now();
     const timeDifference = currentTime - lastTaskTime;
-
+  
     if (timeDifference < 86400000) { // 24 hours in milliseconds
-      setMessage("You can only verify once every 24 hours. Please try again later.");
+      setApiError("You can only verify once every 24 hours. Please try again later.");
+      setApiMessage("");
+      setLoading(false);  // Ensure loading state is reset
       return;
     }
-
+  
     const url = `https://bootstrap.noma.money/verifytask`;
     try {
       const response = await fetch(url, {
@@ -96,20 +115,32 @@ const Bootstrap: React.FC = () => {
         },
         body: JSON.stringify({ address })
       });
-
+  
       if (!response.ok) {
         throw new Error(`Server returned ${response.status}`);
       }
-
+  
       const data = await response.json();
-      setMessage(data.error || data.message);
-      if (!data.error) setIsVerified(true);
+      if (data.error) {
+        setApiError(data.error);
+        setApiMessage("");
+      } else {
+        setApiMessage(data.message);
+        setApiError("");
+        setIsVerified(true);
+      }
       console.log("Verification data:", data);
     } catch (error) {
       console.error("Error verifying task:", error);
-      setMessage("Error verifying task.");
+      setApiError("Error verifying task.");
+      setApiMessage("");
+    } finally {
+      setLoading(false);  // Reset loading state after the API call completes
     }
   };
+  
+  
+  
 
   return (
     <Container maxW="container.xl" p={4}>
@@ -134,86 +165,75 @@ const Bootstrap: React.FC = () => {
         display="flex"
         alignItems="center"
         justifyContent="center"
-        textAlign="center"
+        textAlign="left"
         position="relative"
       >
-        <VStack spacing={6} w="full" px={4}>
-          {/* Heading and Description */}
-          <SimpleGrid columns={1} spacing={2} textAlign="center">
-            <Box>
-              <Heading as="h2" fontSize="2xl" mb={2} color="white">
+        <VStack spacing={8} w="full" px={4}>
+          <Box w="full" maxW="900px">
+            <Box p={6}  borderRadius="md" minH="200px">
+              <Heading as="h2" fontSize="2xl" mb={4} color="white">
                 Bootstrap Event Whitelist
               </Heading>
-            </Box>
-            <Box>
-              <Text fontSize="md" color="gray.500">
-                Join the whitelist to participate in the event and earn $NOMA points. Seats are limited so secure your spot now!
-              </Text>
-            </Box>
-          </SimpleGrid>
-
-          <SimpleGrid 
-            columns={isMobile ? 1 : 2} // Switch to 1 column on mobile
-            spacing={10} 
-            w="full" 
-            maxW={"50vw"}
-            minW={"50vh"}
-            minH="20vh"
-            p={4}
-            mt={30}
-          >
-            {/* Left Column: User Address Info */}
-            <Box>
-              <HStack spacing={2} align="center" justify={isMobile ? "center" : "flex-start"}>
-                <Box><Text>Welcome</Text></Box>
-                <Box><Text fontWeight="bold">{address ? `${address.slice(0, 6)}...${address.slice(-6)}` : "Not connected"}</Text></Box>
-              </HStack>
-              <Text mt={2} textAlign={isMobile ? "center" : "left"}>
-                {subscriptionData 
-                  ? "You are already subscribed" 
-                  : (isConnected && (
-                      <span dangerouslySetInnerHTML={{ __html: error }}></span>
-                    ))}
+              <Text fontSize="lg" color="gray.500">
+                Join the whitelist to participate in the event and earn $NOMA points. Seats are limited, so secure your spot now!
               </Text>
             </Box>
 
-            {/* Right Column: Action Buttons */}
-            <Box display="flex" flexDirection="column" alignItems="center">
-              <VStack spacing={4}>
-                {subscriptionData && !message && (
-                  <Button colorScheme="blue" onClick={handleGetTask} minW={120}>
-                    Get Task
-                  </Button>
-                )}
-                {subscriptionData && (
-                  <Button colorScheme="teal" onClick={handleVerifyTask} minW={120}>
-                    Verify Task
-                  </Button>
-                )}
-              </VStack>
-            </Box>
+            <Box mt={10} p={6} border="3px solid white" p={20} borderRadius={10} minH="250px">
+              <SimpleGrid columns={isMobile ? 1 : 2} spacing={8}>
+                <Box>
+                  <HStack spacing={4} align="center" justify={isMobile ? "center" : "flex-start"}>
+                    <Box><Text fontSize="lg">Welcome</Text></Box>
+                    <Box><Text fontWeight="bold" fontSize="lg">{address ? `${address.slice(0, 6)}...${address.slice(-6)}` : "Not connected"}</Text></Box>
+                  </HStack>
+                  <Text mt={4} textAlign={isMobile ? "center" : "left"} fontSize="md">
+                    {subscriptionData 
+                      ? "You are already subscribed" 
+                      : (isConnected && (
+                          <span dangerouslySetInnerHTML={{ __html: error }}></span>
+                        ))}
+                  </Text>
+                </Box>
 
-            {/* Bottom Row: Message Box Spanning Both Columns */}
-            <Box gridColumn="span 2" mt={4} p={4} bg="gray.800" borderRadius="md">
-              {message && (
-                <Text color={message.includes("Error") || message.includes("only verify once") ? "red.400" : "green.400"} fontWeight="bold">
-                  {message}
-                </Text>
-              )}
+                <Box display="flex" flexDirection="column" alignItems={isMobile?"center":"flex-end"}>
+                  <VStack spacing={6} mt={isMobile?20:0}>
+                    {subscriptionData && !apiMessage && !apiError && (
+                      <Button colorScheme="blue" onClick={handleGetTask} minW={140}>
+                        Get Task
+                      </Button>
+                    )}
+                    {subscriptionData && (
+                      <Button colorScheme="teal" onClick={handleVerifyTask} minW={140}>
+                        Verify Task
+                      </Button>
+                    )}
+                  </VStack>
+                </Box>
+
+              </SimpleGrid>
+              <Box mt={6} p={4} bg="gray.800" borderRadius="md" mt={50}>
+                {loading && (
+                  <Text color="white" fontWeight="semibold">
+                    Loading...
+                  </Text>
+                )}
+                {apiError && !loading && (
+                  <Text color={isTaskEndpoint ? "white" : "#E53E3E"} fontWeight="semibold">
+                    {apiError}
+                  </Text>
+                )}
+                {apiMessage && !loading && (
+                  <Text color={isTaskEndpoint ? "white" : "#48BB78"} fontWeight="semibold">
+                    {apiMessage}
+                  </Text>
+                )}
+              </Box>
+
+
             </Box>
-          </SimpleGrid>
+          </Box>
         </VStack>
       </Box>
-
-      <Box 
-        className="content-area" 
-        display="block" 
-        p={{ base: '4vh', md: '8vh' }} 
-        my={10}
-        h="5vh"
-      >
-        <Box className="container"></Box>
-      </Box>     
     </Container>
   );
 };
