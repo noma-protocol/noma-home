@@ -51,10 +51,10 @@ const Hero: React.FC = () => {
             &nbsp;<b>here</b>&nbsp; 
           </StyledLink> 
           </Box>
-          <Box as="span">&nbsp;&nbsp;👉👉👉&nbsp;&nbsp; </Box>
+          <Box as="span">&nbsp;&nbsp;👈👈👈&nbsp;&nbsp; </Box>
           <Box as="span" color={"gray"}>&nbsp;<b>$NOMA</b>&nbsp;</Box>
           <Box as="span">points earned globally:&nbsp;</Box>
-          <Box as="span" color={"gray"} fontSize={"21px"} mt={-5}>&nbsp;&nbsp;<b>28,973</b></Box>
+          <Box as="span" color={"gray"} fontSize={"21px"} mt={-5}>&nbsp;&nbsp;<b>28,973</b>&nbsp;&nbsp;📈</Box>
         </Box>
       </Box>
 
