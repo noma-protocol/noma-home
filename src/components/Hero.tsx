@@ -45,7 +45,7 @@ const Hero: React.FC = () => {
           <Box as="span">Earn</Box>
           <Box as="span" color={"gray"}>&nbsp;<b>$NOMA</b>&nbsp;</Box> 
           <Box as="span"> points by participating in our community and promoting the upcoming</Box>
-          <Box as="span" color={"gray"}>&nbsp;<b></b>&nbsp;</Box> 
+          <Box as="span" color={"gray"}>&nbsp;<b>bootstrap</b>&nbsp;</Box> 
           <Box as="span">event.&nbsp;&nbsp;Read more 
           <StyledLink href="https://nomaprotocol.medium.com/bootstrap-event-49c1ad496ab6" target="_blank">
             &nbsp;<b>here</b>&nbsp; 
