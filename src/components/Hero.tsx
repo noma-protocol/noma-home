@@ -37,7 +37,7 @@ const Hero: React.FC = () => {
         <Box as="span" color={"gray"}>&nbsp;$NOMA&nbsp;</Box> 
         <Box as="span"> points by participating in our community and promoting the upcoming</Box>
         <Box as="span" color={"gray"}>&nbsp;bootstrap&nbsp;</Box> 
-        <Box as="span">event. 👉👉👉 Total </Box>
+        <Box as="span">event 👉👉👉 Total </Box>
         <Box as="span" color={"gray"}>&nbsp;$NOMA&nbsp;</Box>
         <Box as="span">points earned globally:&nbsp;</Box>
         <Box as="span" color={"gray"} fontSize={"21px"} mt={-5}>&nbsp;&nbsp;28,973</Box>
