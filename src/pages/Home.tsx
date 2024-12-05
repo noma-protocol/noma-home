@@ -9,7 +9,7 @@ import AMM from "../components/AMM.tsx";
 import ALM from "../components/ALM.tsx";
 import CTA from "../components/CTA.tsx";
 import Hero from "../components/Hero.tsx";
-import DetailsX from "../components/DetailsX.tsx";
+import Details from "../components/Details.tsx";
 
 
 const HomePage: React.FC = () => {
@@ -19,7 +19,7 @@ const HomePage: React.FC = () => {
         <Hero />
         <Stats />
         <Treasury />
-        <DetailsX />
+        <Details />
         <ALM />
         <AMM />
         <CTA />

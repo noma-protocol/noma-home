@@ -9,7 +9,7 @@ import {
   } from '@chakra-ui/react';
   import { isMobile } from "react-device-detect";
 
-  export default function DetailsX() {
+  export default function Details() {
     return (
         <>
           <Flex
