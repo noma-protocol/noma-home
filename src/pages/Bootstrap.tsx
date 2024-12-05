@@ -198,12 +198,12 @@ const Bootstrap: React.FC = () => {
                 <Box display="flex" flexDirection="column" alignItems={isMobile?"center":"flex-end"}>
                   <VStack spacing={6} mt={isMobile?20:0}>
                     {subscriptionData && !apiMessage && !apiError && (
-                      <Button colorScheme="blue" onClick={handleGetTask} minW={140}>
+                      <Button colorScheme="blue" onClick={handleGetTask} minW={140} borderRadius={10}>
                         Get Task
                       </Button>
                     )}
                     {subscriptionData && (
-                      <Button colorScheme="teal" onClick={handleVerifyTask} minW={140}>
+                      <Button colorScheme="teal" onClick={handleVerifyTask} minW={140} borderRadius={10}>
                         Verify Task
                       </Button>
                     )}
@@ -224,7 +224,8 @@ const Bootstrap: React.FC = () => {
                 )}
                 {apiMessage && !loading && (
                   <Text color={isTaskEndpoint ? "white" : "#48BB78"} fontWeight="semibold">
-                    {apiMessage}
+                    {isTaskEndpoint ? <Text>Please post this text on X/Twitter to complete your task:</Text> : ""}{<Box mt={10}><i>{apiMessage}</i></Box>}
+                    {isTaskEndpoint ? <Box mt={10}>Once done, click on the "verify task" button or use the "@BootstrapBot verify task" command on Discord to complete the process</Box> : ""}
                   </Text>
                 )}
               </Box>
