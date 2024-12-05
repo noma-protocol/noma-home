@@ -225,7 +225,7 @@ const Bootstrap: React.FC = () => {
                 {apiMessage && !loading && (
                   <Text color={isTaskEndpoint ? "white" : "#48BB78"} fontWeight="semibold">
                     {isTaskEndpoint ? <Text>Please post this text on X/Twitter to complete your task:</Text> : ""}{<Box mt={10}><i>{apiMessage}</i></Box>}
-                    {isTaskEndpoint ? <Box mt={10}>Once done, click on the "verify task" button or use the "@BootstrapBot verify task" command on Discord to complete the process</Box> : ""}
+                    {isTaskEndpoint ? <Box mt={20}>Once done, click on the "verify task" button or use the "@BootstrapBot verify task" command on Discord to complete the process</Box> : ""}
                   </Text>
                 )}
               </Box>
