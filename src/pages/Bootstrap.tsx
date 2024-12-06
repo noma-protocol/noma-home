@@ -10,7 +10,7 @@ const Bootstrap: React.FC = () => {
   const [error, setError] = useState(""); // Frontend error messages
   const [apiMessage, setApiMessage] = useState(""); // Success messages from backend
   const [apiError, setApiError] = useState(""); // Error messages from backend
-  // const [isVerified, setIsVerified] = useState(false);
+  const [isVerified, setIsVerified] = useState(false);
   const [isTaskEndpoint, setIsTaskEndpoint] = useState(false);
   const [loading, setLoading] = useState(false); // Add a loading state to manage the loading indicator
   const [hasCopied, setHasCopied] = useState(false);
@@ -239,7 +239,7 @@ const Bootstrap: React.FC = () => {
                     mt={10}
                     minW={120}
                     onClick={handleCopy}
-                    colorScheme="#fcad03"
+                    colorScheme="gray"
                     variant="ghost"
                     leftIcon={<CopyIcon />}
                     bg="transparent"  
