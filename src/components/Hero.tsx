@@ -43,27 +43,28 @@ const Hero: React.FC = () => {
           visibility="visible" // Ensure it's visible when not hidden
           className="animated-banner"
         >
-          <Box
-            as="span"
-            whiteSpace="nowrap"
-            fontSize="16px"
-            color="black"
-            display="flex"
-            animation="scroll 40s linear infinite"
-          >
-            <Box as="span">Earn</Box>
-            <Box as="span" color="gray">&nbsp;<b>$NOMA</b>&nbsp;</Box>
-            <Box as="span">points by participating in our community and promoting the upcoming</Box>
-            <Box as="span" color="gray">&nbsp;<b>bootstrap</b>&nbsp;</Box>
-            <Box as="span">event.&nbsp;&nbsp;Read more</Box>
-            <StyledLink href="https://nomaprotocol.medium.com/bootstrap-event-49c1ad496ab6" target="_blank">
-              &nbsp;<b>here</b>&nbsp;
-            </StyledLink>
-            <Box as="span">&nbsp;&nbsp;👈👈👈&nbsp;&nbsp;</Box>
-            <Box as="span" color="gray">&nbsp;<b>$NOMA</b>&nbsp;</Box>
-            <Box as="span">points earned globally:&nbsp;</Box>
-            <Box as="span" color="gray" fontSize="21px" mt={-5}>&nbsp;&nbsp;<b>28,973</b>&nbsp;&nbsp;📈</Box>
-          </Box>
+        <Box
+          as="span"
+          whiteSpace="nowrap"
+          fontSize="16px"
+          color="black"
+          display="flex"
+          animation={`scroll ${isMobile ? "20s" : "40s"} linear infinite`}
+        >
+          <Box as="span">Earn</Box>
+          <Box as="span" color="gray">&nbsp;<b>$NOMA</b>&nbsp;</Box>
+          <Box as="span">points by participating in our community and promoting the upcoming</Box>
+          <Box as="span" color="gray">&nbsp;<b>bootstrap</b>&nbsp;</Box>
+          <Box as="span">event.&nbsp;&nbsp;Read more</Box>
+          <StyledLink href="https://nomaprotocol.medium.com/bootstrap-event-49c1ad496ab6" target="_blank">
+            &nbsp;<b>here</b>&nbsp;
+          </StyledLink>
+          <Box as="span">&nbsp;&nbsp;👈👈👈&nbsp;&nbsp;</Box>
+          <Box as="span" color="gray">&nbsp;<b>$NOMA</b>&nbsp;</Box>
+          <Box as="span">points earned globally:&nbsp;</Box>
+          <Box as="span" color="gray" fontSize="21px" mt={-5}>&nbsp;&nbsp;<b>28,973</b>&nbsp;&nbsp;📈</Box>
+        </Box>
+
         </Box>
       ) : (
         <Box visibility="hidden" /> // Hide without removing from the DOM
@@ -78,7 +79,7 @@ const Hero: React.FC = () => {
             100% {
               transform: translateX(-100%);
             }
-          }
+          }         
         `}
       </style>
 
