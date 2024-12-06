@@ -148,9 +148,6 @@ const Bootstrap: React.FC = () => {
     }
   };
   
-  
-  
-
   return (
     <Container maxW="container.xl" p={4}>
 
@@ -224,25 +221,26 @@ const Bootstrap: React.FC = () => {
                 {apiMessage && !loading && (
                   <Text color={isTaskEndpoint ? "white" : "#48BB78"} fontWeight="semibold">
                     {isTaskEndpoint ? <Text>Please post this text on X/Twitter to complete your task:</Text> : ""}{<Box mt={10}><i>{apiMessage}</i>
-                    <Box mt={4} display="flex" alignItems="center">
-                    <Button
-                    mt={10}
-                    minW={120}
-                    onClick={handleCopy}
-                    colorScheme="gray"
-                    variant="ghost"
-                    leftIcon={<CopyIcon />}
-                    bg="transparent"  
-                    borderRadius={10}    
-                    border="2px solid"     
-                    color="gray"           
-                    _hover={{ bg: "rgba(0, 0, 255, 0.1)" }} 
-                    _active={{ bg: "rgba(0, 0, 255, 0.2)" }} 
-                  >
-                    {hasCopied ? "Copied!" : "Copy"}
-                  </Button>
+                      {!isVerified && 
+                      <Box mt={4} display="flex" alignItems="center">
+                        <Button
+                        mt={10}
+                        minW={120}
+                        onClick={handleCopy}
+                        colorScheme="gray"
+                        variant="ghost"
+                        leftIcon={<CopyIcon />}
+                        bg="transparent"  
+                        borderRadius={10}    
+                        border="2px solid"     
+                        color="gray"           
+                        _hover={{ bg: "rgba(0, 0, 255, 0.1)" }} 
+                        _active={{ bg: "rgba(0, 0, 255, 0.2)" }} 
+                      >
+                        {hasCopied ? "Copied!" : "Copy"}
+                      </Button>
 
-                    </Box>
+                      </Box>}
                     </Box>}
                     {isTaskEndpoint ? <Box mt={20}>Once done, click on the "verify task" button or use the "@BootstrapBot verify task" command on Discord to complete the process</Box> : ""}
                   </Text>
