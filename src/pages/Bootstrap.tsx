@@ -239,7 +239,7 @@ const Bootstrap: React.FC = () => {
                     mt={10}
                     minW={120}
                     onClick={handleCopy}
-                    colorScheme="gray"
+                    colorScheme="#fcad03"
                     variant="ghost"
                     leftIcon={<CopyIcon />}
                     bg="transparent"  
