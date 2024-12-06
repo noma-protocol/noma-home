@@ -153,15 +153,6 @@ const Bootstrap: React.FC = () => {
 
   return (
     <Container maxW="container.xl" p={4}>
-      <Box 
-        as="section" 
-        className="content-area" 
-        display="block" 
-        p={{ base: '4vh', md: '8vh' }} 
-        my={10}
-      >
-        <Box className="container"></Box>
-      </Box>
 
       <Box 
         as="section" 
@@ -169,7 +160,6 @@ const Bootstrap: React.FC = () => {
         p={{ base: '4vh', md: '8vh' }} 
         my={10}
         w="100%"
-        bg="#161616"
         color="white"
         display="flex"
         alignItems="center"
