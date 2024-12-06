@@ -7,13 +7,19 @@ import { bsc, localhost } from "viem/chains";
 // import { ToastContainer } from "react-toastify";
 import { switchNetwork, watchNetwork } from "wagmi/actions";
 import "react-toastify/dist/ReactToastify.css";
+import { MenuProvider } from "./hooks/MenuContext"; // Import the MenuProvider
+
+import React from "react";
+import ReactGA from 'react-ga';
 
 // Components
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 function App() {
-  
+  const TRACKING_ID = "UA-XXXXX-X"; // OUR_TRACKING_ID
+  ReactGA.initialize(TRACKING_ID);
+
   const projectId = "1607c5f300e1191999e3033443961435";
   const metadata = {
     name: "Noma Protocol",
@@ -48,9 +54,11 @@ function App() {
   return (
     <WagmiConfig config={wagmiConfig}>
       <LanguageProvider>
+      <MenuProvider>
         <Header />
         <Outlet />
         <Footer />
+        </MenuProvider>
       </LanguageProvider>
     </WagmiConfig>
   );

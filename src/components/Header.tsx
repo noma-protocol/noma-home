@@ -1,15 +1,39 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { LanguageContext, LanguageContextType } from "../core/LanguageProvider";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { useAccount } from "wagmi";
 import Logo from "../assets/images/noma_logo_transparent.png";
 // import { isMobile } from 'react-device-detect';
 import { Link, Image } from '@chakra-ui/react';
+import { useMenu } from "../hooks/MenuContext";
 
 const Header: React.FC = () => {
   const ctx = useContext<LanguageContextType>(LanguageContext);
   const { open } = useWeb3Modal();
   const { address, isConnected } = useAccount();
+  const { setIsMenuOpen } = useMenu(); // Access setIsMenuOpen from context
+
+
+  useEffect(() => {
+    const menuModal = document.getElementById("menu");
+    if (menuModal) {
+      menuModal.addEventListener("show.bs.modal", () => {
+        console.log("Menu opened");
+        setIsMenuOpen(true);
+      });
+      menuModal.addEventListener("hide.bs.modal", () => {
+        console.log("Menu closed");
+        setIsMenuOpen(false);
+      });
+    }
+
+    return () => {
+      if (menuModal) {
+        menuModal.removeEventListener("show.bs.modal", () => setIsMenuOpen(true));
+        menuModal.removeEventListener("hide.bs.modal", () => setIsMenuOpen(false));
+      }
+    };
+  }, [setIsMenuOpen]);
 
   return (
     <header id="header">
