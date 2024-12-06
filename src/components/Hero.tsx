@@ -97,7 +97,7 @@ const Hero: React.FC = () => {
                   </Text>
                 </Heading>
                 <Text color={"white"}>
-                  Perpetually increasing and guaranteed Intrinsic Minimum Value (IMV) with permission-less market-making on top of Uniswap V3.
+                  Perpetually increasing and guaranteed Intrinsic Minimum Value (IMV) with permission-less market making on top of Uniswap V3.
                 </Text>
                 <HStack minW={100} justify={{ base: 'center', md: 'flex-start' }}>
                   <a href="https://nomaprotocol.medium.com/announcing-noma-ecafef785e34" onClick={()=>gaEventTracker('read_announcement')} target="_blank">
