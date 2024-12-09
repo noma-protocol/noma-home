@@ -21,7 +21,7 @@ return (
                     textTransform={'uppercase'}
                     color={'#1ad000'}
                     fontWeight={600}
-                    fontSize={'sm'}
+                    fontSize={'lg'}
                     p={2}
                     alignSelf={'flex-start'}
                     rounded={'md'}>

@@ -166,6 +166,7 @@ const Bootstrap: React.FC = () => {
         justifyContent="center"
         textAlign="left"
         position="relative"
+        ml={isMobile ? 0 : "8%"}
       >
         <VStack spacing={8} w="full"  >
           <Box w="full" maxW="900px">
@@ -241,7 +242,6 @@ const Bootstrap: React.FC = () => {
                       {!isVerified && 
                       <Box mt={4} display="flex" alignItems="center">
                         <Button
-                        mt={10}
                         minW={120}
                         onClick={handleCopy}
                         colorScheme="gray"

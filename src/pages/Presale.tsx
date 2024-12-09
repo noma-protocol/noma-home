@@ -6,6 +6,7 @@ import {
   SimpleGrid,
   HStack,
   Heading,
+  Image,
   Text,
   Button,
   Flex,
@@ -20,7 +21,8 @@ import {
 } from "../components/ui/stat";
 
 import { commify } from "../utils";
-import { set } from "react-ga";
+import Logo from "../assets/images/noma_logo_transparent.png";
+
 const Presale: React.FC = () => {
   const { address, isConnected } = useAccount();
 
@@ -35,7 +37,7 @@ const Presale: React.FC = () => {
   const [contributionAmount, setContributionAmount] = useState(0);
   const [tokensPurchased, setTokensPurchased] = useState(0);
 
-  const tokenPrice = 0.000041;
+  const tokenPrice = 0.00008;
 
   const handleApprovalAndDeposit = () => {
     if (!isConnected) {
@@ -53,11 +55,11 @@ const Presale: React.FC = () => {
   }, [contributionAmount]);
 
   return (
-    <Container maxW="container.xl" p={4}>
+    <Container maxW="container.xl" p={2}>
       <Box
-        as="section"
-        p={{ base: "4vh", md: "8vh" }}
-        my={10}
+        // as="section"
+        // p={{ base: "4vh", md: "8vh" }}
+        // my={10}
         w="100%"
         color="white"
         display="flex"
@@ -65,10 +67,10 @@ const Presale: React.FC = () => {
         justifyContent="center"
         textAlign="left"
         position="relative"
-        mt={95}
+        mt={150}
       >
         <VStack spacing={8} w="full" px={4}>
-          <Box w="full" maxW="1000px" ml={"10%"}>
+          <Box w="full" maxW="1000px" ml={isMobile?0:"18%"}>
             {/* <Heading fontSize={34}  mb={4} color="white" ml={15}>
               Noma Presale
             </Heading> */}
@@ -80,7 +82,7 @@ const Presale: React.FC = () => {
             <Box
               w="full"
               maxW="1000px"
-              p={6}
+              p={4}
               borderRadius="lg"
               border="2px solid white"
               bg="#2d2f33"
@@ -112,9 +114,10 @@ const Presale: React.FC = () => {
               display="flex"
               flexDirection="column"
               gap={0}
-              p={2}
+              pr={10}
+              pl={5}
             >
-            <Flex flexWrap="wrap" justifyContent="space-between" gap={4}>
+            <Flex flexWrap="wrap" justifyContent="space-between" gap={4} mt={isMobile? 5:0}>
               <Box>
                 <StatRoot>
                   <StatLabel fontSize="sm" lineHeight="5px">
@@ -149,16 +152,11 @@ const Presale: React.FC = () => {
                 </StatRoot>
               </Box>
             </Flex>
-
- 
-
             </Box>
-
-
           </SimpleGrid>
 
           {/* Description */}
-            <Box mt={"10%"} color="gray.300" fontSize="sm" lineHeight="tall">
+            <Box mt={50} color="gray.300" fontSize="sm" lineHeight="tall" p={4} w={isMobile?280:600}>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam similique explicabo
               excepturi dicta saepe unde hic dolor officiis eos veritatis dolorum atque aperiam, soluta
               aliquid. Cupiditate inventore blanditiis vel saepe.
@@ -197,7 +195,7 @@ const Presale: React.FC = () => {
                   }}
                 />
                   <Button
-                    ml={2}
+                    ml={4}
                     variant={"outline"}
                     colorScheme="blue"
                     w={{ base: "60px", sm: "60px", md: "100px", lg: "100px" }} 
@@ -208,13 +206,14 @@ const Presale: React.FC = () => {
                     mt={10}
                     mb={5}
                     disabled={contributionAmount === 0}
+
                   >
                     Deposit
                   </Button> 
                 </HStack>
                 </Box>
                 <Box bg="gray.700" borderRadius={"10px"} p={4} >
-                  <HStack>
+                  <HStack columns={4}>
                      <Box > 
                       <Text 
                         fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }} 
@@ -228,14 +227,22 @@ const Presale: React.FC = () => {
                       >{contributionAmount}</Text> 
                     </Box>
                     <Box w="auto"> 
+                    <Image
+                        h={5}
+                        src="https://cryptologos.cc/logos/ethereum-eth-logo.png"
+                        // visibility={isMobile ? "hidden" : "initial"}
+                        ml={"-6px"}
+                      /> 
+                    </Box>
+                    <Box w="auto"> 
                       <Text 
                         fontWeight={"bold"} 
                         fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }} 
-                      >ETH</Text> 
-                    </Box>
+                      >ETH</Text>
+                    </Box>                    
                   </HStack>
                   {isMobile ? <br />: ""}
-                  <HStack mt={2}>
+                  <HStack mt={2} columns={3}>
                      <Box > 
                       <Text 
                         fontSize={{ base: "11px", sm: "11px", md: "14px", lg: "14px" }} 
@@ -248,17 +255,25 @@ const Presale: React.FC = () => {
                         fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }} 
                       >{commify(tokensPurchased)}</Text> 
                     </Box>
+                    <Box w="auto">
+                    <Image
+                        h={4}
+                        src={Logo}
+                        // visibility={isMobile ? "hidden" : "initial"}
+                      /> 
+                    </Box>
                     <Box w="auto"> 
                       <Text 
                       fontWeight={"bold"} 
                       fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }} 
-                      >&nbsp;&nbsp;$NOMA</Text> 
+                      >$NOMA</Text> 
                     </Box>
                   </HStack>
-
                 </Box>
+              
               </SimpleGrid>
         </Box>
+        <br />  <br />  <br />
       </VStack>
           </Box>
         </VStack>

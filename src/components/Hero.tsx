@@ -130,7 +130,7 @@ const Hero: React.FC = () => {
                 </HStack>
               </Stack>
             </Box>
-            <Box width={isMobile ? "0" : "40%"} textAlign="center">
+            <Box width={isMobile ? "0" : "50%"} textAlign="center">
               <Image
                 objectFit="cover"
                 src="https://raw.githubusercontent.com/noma-protocol/assets/main/hands.png"
