@@ -175,7 +175,9 @@ const Bootstrap: React.FC = () => {
                 Bootstrap Event Whitelist
               </Heading>
               <Text fontSize="lg" color="gray.500">
-                Join the whitelist to participate in the event and earn $NOMA points. Seats are limited, so secure your spot now!
+                Join the whitelist to participate in the event and earn $NOMA points. Seats are limited, so secure your spot now! 
+                <a href="https://nomaprotocol.medium.com/bootstrap-event-49c1ad496ab6" target="_blank" rel="noopener noreferrer">
+                  &nbsp; &nbsp;Read the bootstrap event announcement here.</a>
               </Text>
             </Box>
 

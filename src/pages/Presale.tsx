@@ -39,6 +39,40 @@ const Presale: React.FC = () => {
 
   const tokenPrice = 0.00008;
 
+  async function addBaseNetwork() {
+      try {
+          // Check if the MetaMask extension is installed
+          if (!window.ethereum) {
+              alert('MetaMask is not installed. Please install it to use this feature.');
+              return;
+          }
+
+          // Define the Base network parameters
+          const baseNetwork = {
+              chainId: '0x2105', // Hexadecimal for 8451
+              chainName: 'Base Mainnet',
+              nativeCurrency: {
+                  name: 'Ether',
+                  symbol: 'ETH', // Symbol for the native currency
+                  decimals: 18,
+              },
+              rpcUrls: ['https://mainnet.base.org'], // Replace with Base's official RPC endpoint
+              blockExplorerUrls: ['https://explorer.base.org'], // Replace with Base's block explorer URL
+          };
+
+          // Request MetaMask to add the network
+          await window.ethereum.request({
+              method: 'wallet_addEthereumChain',
+              params: [baseNetwork],
+          });
+
+          console.log('Base network added successfully!');
+      } catch (error) {
+          console.error('Failed to add the Base network:', error);
+          alert('Failed to add the Base network. See console for details.');
+      }
+  }
+
   const handleApprovalAndDeposit = () => {
     if (!isConnected) {
       alert("Please connect your wallet to proceed.");
@@ -156,10 +190,27 @@ const Presale: React.FC = () => {
           </SimpleGrid>
 
           {/* Description */}
-            <Box mt={50} color="gray.300" fontSize="sm" lineHeight="tall" p={4} w={isMobile?280:600}>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam similique explicabo
-              excepturi dicta saepe unde hic dolor officiis eos veritatis dolorum atque aperiam, soluta
-              aliquid. Cupiditate inventore blanditiis vel saepe.
+            <Box mt={50} color="gray.300" fontSize="sm" lineHeight="tall" p={4} w={isMobile? 280 : 600}>
+               <HStack>
+                <Box>Make sure your wallet is connected to the Base network to participate in the presale.
+                 To add the Base network to your web3 wallet please click the button below.</Box> 
+               </HStack>
+               <Button
+                mt={2}
+                minW={120}
+                onClick={addBaseNetwork}
+                colorScheme="gray"
+                variant="ghost"
+                // leftIcon={<CopyIcon />}
+                bg="transparent"  
+                borderRadius={10}    
+                border="2px solid"     
+                color="gray"           
+                _hover={{ bg: "rgba(0, 0, 255, 0.1)" }} 
+                _active={{ bg: "rgba(0, 0, 255, 0.2)" }} 
+              >
+                Add Base
+              </Button>
               <br /><br /><br />
             </Box>
 
@@ -255,18 +306,19 @@ const Presale: React.FC = () => {
                         fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }} 
                       >{commify(tokensPurchased)}</Text> 
                     </Box>
-                    <Box w="auto">
+                    <Box w="auto" ml={isMobile? -2 : 0}>
                     <Image
                         h={4}
                         src={Logo}
                         // visibility={isMobile ? "hidden" : "initial"}
                       /> 
                     </Box>
-                    <Box w="auto"> 
+                    <Box w="auto" > 
                       <Text 
                       fontWeight={"bold"} 
                       fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }} 
-                      >$NOMA</Text> 
+                      
+                      >{isMobile? "":<>&nbsp;</>}$NOMA</Text> 
                     </Box>
                   </HStack>
                 </Box>
