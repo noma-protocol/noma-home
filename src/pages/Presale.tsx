@@ -196,18 +196,19 @@ const Presale: React.FC = () => {
                  To add the Base network to your web3 wallet please click the button below.</Box> 
                </HStack>
                <Button
-                mt={2}
-                minW={120}
+                mt={4}
                 onClick={addBaseNetwork}
                 colorScheme="gray"
                 variant="ghost"
                 // leftIcon={<CopyIcon />}
                 bg="transparent"  
-                borderRadius={10}    
-                border="2px solid"     
+                border="1px solid"     
                 color="gray"           
                 _hover={{ bg: "rgba(0, 0, 255, 0.1)" }} 
                 _active={{ bg: "rgba(0, 0, 255, 0.2)" }} 
+                ml={2}
+                w={isMobile? 20: 110}
+                fontSize={isMobile? 10: 14}
               >
                 Add Base
               </Button>
@@ -257,7 +258,7 @@ const Presale: React.FC = () => {
                     mt={10}
                     mb={5}
                     disabled={contributionAmount === 0}
-
+                  
                   >
                     Deposit
                   </Button> 
