@@ -11,6 +11,7 @@ import { MenuProvider } from "./hooks/MenuContext"; // Import the MenuProvider
 
 import React from "react";
 import ReactGA from 'react-ga';
+import { Provider } from "./components/ui/provider"
 
 // Components
 import Header from "./components/Header";
@@ -53,6 +54,7 @@ function App() {
 
   return (
     <WagmiConfig config={wagmiConfig}>
+      <Provider>
       <LanguageProvider>
       <MenuProvider>
         <Header />
@@ -60,6 +62,7 @@ function App() {
         <Footer />
         </MenuProvider>
       </LanguageProvider>
+      </Provider>
     </WagmiConfig>
   );
 }
