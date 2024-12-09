@@ -5,7 +5,7 @@ import "./index.css";
 import App from "./App";
 import HomePage from "./pages/Home";
 import Bootstrap from "./pages/Bootstrap";
-
+import Presale from "./pages/Presale";
 
 
 const router = createBrowserRouter([
@@ -21,6 +21,10 @@ const router = createBrowserRouter([
         path: "/bootstrap",
         element: <Bootstrap  />,
       },      
+      {
+        path: "/presale",
+        element: <Presale  />,
+      },
     ],
   },
 ]);

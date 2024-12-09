@@ -27,13 +27,20 @@ return (
                     Upcoming Presale
                   </Text>
                   <Heading alignSelf={'flex-start'}>Enroll in the bootstrap event</Heading>
-                  <Text color={'white'} fontSize={'lg'}>
+                  <Text color={'white'} fontSize={'md'}>
                     Innovative protocol design and trustless distribution mechanism form a synergy to ensure Noma has a fair distribution from the get go. Do not miss the upcoming bootstrap event. Join our community and get all updates.
                   </Text>
                 </Stack>
-                <HStack pt={"3vh"}>
+                <HStack pt={"3vh"} ml={isMobile? "-10%" : 0}>
                   <a href="https://nomaprotocol.medium.com/bootstrap-event-49c1ad496ab6" onClick={()=>gaEventTracker('read_announcement')} target="_blank">
-                    <Button p={15} minW={100} fontWeight={600} background={"black"} color={"lightgreen"}>
+                    <Button 
+                      p={15} minW={100} 
+                      fontWeight={600} 
+                      background={"black"} 
+                      color={"lightgreen"} 
+                      h={70} 
+                      border={"1px solid gray"}
+                      >
                         Read our <br />announcement
                     </Button>
                   </a>
@@ -44,7 +51,9 @@ return (
                       maxW={"15vh"} 
                       fontWeight={600} 
                       background={"black"} 
-                      color={"#1ad000"}>
+                      color={"#1ad000"}
+                      h={70}
+                      border={"1px solid gray"}>
                       Join our <br />Community
                     </Button>
                   </a>

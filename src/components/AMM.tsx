@@ -17,11 +17,12 @@ function AMM({ title, desc, ...rest }) {
 
 return (
     <Box 
-      as="section" 
+      // as="section" 
       className="content-area" 
       display={"inline-block"} 
       p={ isMobile ? '8vh' : '10vh' } 
       my={20}
+      ml={isMobile ? 0: "15%"}
     >
       <Box className="container">
         <Box className="row align-items-center justify-content-center" >
@@ -32,24 +33,26 @@ return (
                   textTransform={'uppercase'}
                   color={'#1ad000'}
                   fontWeight={600}
-                  fontSize={'sm'}
+                  fontSize={'lg'}
                   p={2}
                   alignSelf={'flex-start'}
                   rounded={'md'}>
                   Built on top of
                 </Text>
                 <Heading alignSelf={'flex-start'}>Uniswap V3</Heading>
-                <Text color={'white'} fontSize={'lg'}>
+                <Text color={'white'} fontSize={'md'}>
                   By leveraging the immutability and power of concentrated liquidity automated market makers (CLMM), the protocol will generate fees from Uniswap V3 positions forever.
                 </Text>
-                <a href="https://noma-protocol.github.io/" target="_blank">
+                <a href="https://noma-protocol.github.io/" onClick={()=>gaEventTracker('read_more')} target="_blank">
                   <Button 
                     maxW={"150px"}
                     minW={100} 
                     p={15}
                     background={"black"}
                     color={"#1ad000"}
-                    fontWeight={600} >
+                    fontWeight={600} 
+                    border={"1px solid gray"}
+                    >
                       Read More
                   </Button>
                 </a>

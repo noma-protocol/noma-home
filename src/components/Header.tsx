@@ -56,6 +56,11 @@ const Header: React.FC = () => {
               </Link>
             </li>
             <li className="nav-item">
+              <Link className="nav-link" href="/presale">
+                  Presale
+              </Link>
+            </li>
+            <li className="nav-item">
               <Link className="nav-link"  target="_blank" href="https://github.com/noma-protocol" isExternal >
                   Github
               </Link>
@@ -136,8 +141,17 @@ const Header: React.FC = () => {
                       data-bs-dismiss="modal"
                       style={{ fontSize: "20px", marginTop:"20px"}}
                     >
-                      <a className="btn ml-lg-auto btn-bordered-white" href="/bootstrap" target="_blank">
+                      <a className="btn ml-lg-auto btn-bordered-white" href="/bootstrap" >
                         Bootstrap
+                      </a>
+                    </li>
+                    <li
+                      className="nav-item"
+                      data-bs-dismiss="modal"
+                      style={{ fontSize: "20px", marginTop:"20px"}}
+                    >
+                      <a className="btn ml-lg-auto btn-bordered-white" href="/presale">
+                        Presale
                       </a>
                     </li>
                     <li

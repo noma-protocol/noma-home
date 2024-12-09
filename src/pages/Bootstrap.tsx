@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, VStack, Box, SimpleGrid, HStack, Heading, Text, Button } from "@chakra-ui/react";
 import { useAccount } from "wagmi";
 import { isMobile } from "react-device-detect";
-import { CopyIcon } from "@chakra-ui/icons";
+// import { CopyIcon } from "@chakra-ui/icons";
 
 const Bootstrap: React.FC = () => {
   const { address, isConnected } = useAccount();
@@ -14,6 +14,7 @@ const Bootstrap: React.FC = () => {
   const [isTaskEndpoint, setIsTaskEndpoint] = useState(false);
   const [loading, setLoading] = useState(false); // Add a loading state to manage the loading indicator
   const [hasCopied, setHasCopied] = useState(false);
+  const [defaultMsg, setDefaultMsg] = useState('Click on the "Get Task" button to start the process.');
 
   const handleCopy = () => {
     navigator.clipboard.writeText(apiMessage).then(() => {
@@ -66,6 +67,7 @@ const Bootstrap: React.FC = () => {
   const handleGetTask = async () => {
     if (!address) return;
     setIsTaskEndpoint(true);  // Set isTaskEndpoint to true before the task call.
+    setDefaultMsg("");
     setLoading(true);  // Set loading to true to prevent premature state updates
   
     const url = `https://bootstrap.noma.money/task?address=${address}`;
@@ -89,6 +91,7 @@ const Bootstrap: React.FC = () => {
         setApiMessage(data.message);
         setApiError("");
       }
+
       console.log("Task data:", data);
     } catch (error) {
       console.error("Error fetching task:", error);
@@ -154,7 +157,7 @@ const Bootstrap: React.FC = () => {
       <Box 
         as="section" 
         className="content-area" 
-        p={{ base: '4vh', md: '8vh' }} 
+        // p={{ base: '4vh', md: '8vh' }} 
         my={10}
         w="100%"
         color="white"
@@ -164,9 +167,9 @@ const Bootstrap: React.FC = () => {
         textAlign="left"
         position="relative"
       >
-        <VStack spacing={8} w="full" px={4}>
+        <VStack spacing={8} w="full"  >
           <Box w="full" maxW="900px">
-            <Box p={6}  borderRadius="md" minH="200px">
+            <Box p={4}  borderRadius="md" minH="200px">
               <Heading as="h2" fontSize="2xl" mb={4} color="white">
                 Bootstrap Event Whitelist
               </Heading>
@@ -175,7 +178,7 @@ const Bootstrap: React.FC = () => {
               </Text>
             </Box>
 
-            <Box mt={10} p={6} border="3px solid white" p={20} borderRadius={10} minH="250px" backgroundColor={"#37393d"}>
+            <Box mt={10} p={2} border="2px solid white" p={4} borderRadius={10} minH="250px" backgroundColor={"#37393d"}>
               <SimpleGrid columns={isMobile ? 1 : 2} spacing={8}>
                 <Box>
                   <HStack spacing={4} align="center" justify={isMobile ? "center" : "flex-start"}>
@@ -199,7 +202,13 @@ const Bootstrap: React.FC = () => {
                       </Button>
                     )}
                     {subscriptionData && (
-                      <Button colorScheme="teal" onClick={handleVerifyTask} minW={140} borderRadius={10}>
+                      <Button 
+                        colorScheme="teal" 
+                        onClick={handleVerifyTask} 
+                        minW={140} 
+                        borderRadius={10}
+                        disabled={defaultMsg == 'Click on the "Get Task" button to start the process.'}
+                      >
                         Verify Task
                       </Button>
                     )}
@@ -207,7 +216,15 @@ const Bootstrap: React.FC = () => {
                 </Box>
 
               </SimpleGrid>
-              <Box mt={6} p={4} bg="gray.800" borderRadius="md" mt={50}>
+              <Box 
+                p={4} 
+                bg="gray.800" 
+                borderRadius="md" 
+                mt={50}   
+                width={isMobile ? "320px" : "auto"}
+                wordBreak="break-word" 
+              >
+                {defaultMsg}
                 {loading && (
                   <Text color="white" fontWeight="semibold">
                     Loading...
@@ -229,7 +246,7 @@ const Bootstrap: React.FC = () => {
                         onClick={handleCopy}
                         colorScheme="gray"
                         variant="ghost"
-                        leftIcon={<CopyIcon />}
+                        // leftIcon={<CopyIcon />}
                         bg="transparent"  
                         borderRadius={10}    
                         border="2px solid"     
@@ -242,7 +259,7 @@ const Bootstrap: React.FC = () => {
 
                       </Box>}
                     </Box>}
-                    {isTaskEndpoint ? <Box mt={20}>Once done, click on the "verify task" button or use the "@BootstrapBot verify task" command on Discord to complete the process</Box> : ""}
+                    {isTaskEndpoint ? <Box mt={10}>Once done, click on the "verify task" button or use the "@BootstrapBot verify task" command on Discord to complete the process</Box> : ""}
                   </Text>
                 )}
               </Box>

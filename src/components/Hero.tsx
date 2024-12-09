@@ -62,7 +62,7 @@ const Hero: React.FC = () => {
           <Box as="span">&nbsp;&nbsp;👈👈👈&nbsp;&nbsp;</Box>
           <Box as="span" color="gray">&nbsp;<b>$NOMA</b>&nbsp;</Box>
           <Box as="span">points earned globally:&nbsp;</Box>
-          <Box as="span" color="gray" fontSize="21px" mt={-5}>&nbsp;&nbsp;<b>28,973</b>&nbsp;&nbsp;📈</Box>
+          <Box as="span" color="gray" fontSize="21px" mt={-1}>&nbsp;&nbsp;<b>28,973</b>&nbsp;&nbsp;📈</Box>
         </Box>
 
         </Box>
@@ -85,7 +85,9 @@ const Hero: React.FC = () => {
 
       {/* Main Hero Content */}
       <Box
-        p={isMobile ? "10vw" : "5vw"}
+        // ml={"5%"}
+        // p={isMobile ? "10vw" : "5vw"}
+        ml={isMobile ? 0 : "15%"}
         flex={1}
         gap={20}
         className="container"
@@ -115,11 +117,11 @@ const Hero: React.FC = () => {
                 </Text>
                 <HStack minW={100} justify={{ base: "center", md: "flex-start" }}>
                   <a href="https://nomaprotocol.medium.com/announcing-noma-ecafef785e34" onClick={() => gaEventTracker("read_announcement")} target="_blank">
-                    <Button p={15} minW={100} fontWeight={600} background="black" color="lightgreen">
+                    <Button p={15} minW={100} fontWeight={600} background="black" color="lightgreen" h={70} border={"1px solid gray"}>
                       Read our <br />announcement
                     </Button>
                   </a>
-                  <Button p={15} bg="lightgreen" minW={100} fontWeight={600} isDisabled>
+                  <Button p={15} bg="lightgreen" minW={100} fontWeight={600} isDisabled h={70} borderStyle={"outset"} border={"1px solid white"}>
                     <div style={{ textAlign: "center" }}>
                       <div>Go to dApp</div>
                       <div style={{ fontSize: "10px", marginTop: "5px", color: "gray" }}>Coming Soon</div>
@@ -128,7 +130,7 @@ const Hero: React.FC = () => {
                 </HStack>
               </Stack>
             </Box>
-            <Box width={isMobile ? "0" : "50%"} textAlign="center">
+            <Box width={isMobile ? "0" : "40%"} textAlign="center">
               <Image
                 objectFit="cover"
                 src="https://raw.githubusercontent.com/noma-protocol/assets/main/hands.png"
