@@ -31,7 +31,7 @@ return (
                     Innovative protocol design and trustless distribution mechanism form a synergy to ensure Noma has a fair distribution from the get go. Do not miss the upcoming bootstrap event. Join our community and get all updates.
                   </Text>
                 </Stack>
-                <HStack pt={"3vh"} ml={isMobile? "-10%" : 0}>
+                <HStack pt={"3vh"} ml={isMobile? "-12%" : 0}>
                   <a href="https://nomaprotocol.medium.com/bootstrap-event-49c1ad496ab6" onClick={()=>gaEventTracker('read_announcement')} target="_blank">
                     <Button 
                       p={15} minW={100} 
