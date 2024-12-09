@@ -8,8 +8,9 @@ return (
       as="section" 
       className="content-area" 
       display={"inline-block"} 
-      p={ isMobile ? '8vh' : '10vh' } 
+      // p={ isMobile ? '8vh' : '10vh' } 
       my={20}
+      ml={isMobile ? "5%": "15%"}
     >
       <Box className="container">
         <Box className="row align-items-center justify-content-center" >
@@ -27,11 +28,11 @@ return (
                     Upcoming Presale
                   </Text>
                   <Heading alignSelf={'flex-start'}>Enroll in the bootstrap event</Heading>
-                  <Text color={'white'} fontSize={'md'}>
-                    Innovative protocol design and trustless distribution mechanism form a synergy to ensure Noma has a fair distribution from the get go. Do not miss the upcoming bootstrap event. Join our community and get all updates.
+                  <Text color={'white'} fontSize={'md'} w={isMobile?"280px" : '800px'}>
+                    Innovative protocol design and trustless distribution mechanism form a synergy to ensure Noma has a fair distribution from the get go. Do not miss the upcoming bootstrap event. {isMobile? "": <br />} Join our community and get all updates.
                   </Text>
                 </Stack>
-                <HStack pt={"3vh"} ml={isMobile? "-12%" : 0}>
+                <HStack pt={"3vh"} >
                   <a href="https://nomaprotocol.medium.com/bootstrap-event-49c1ad496ab6" onClick={()=>gaEventTracker('read_announcement')} target="_blank">
                     <Button 
                       p={15} minW={100} 
