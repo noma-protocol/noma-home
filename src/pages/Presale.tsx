@@ -26,6 +26,9 @@ import Logo from "../assets/images/noma_logo_transparent.png";
 const Presale: React.FC = () => {
   const { address, isConnected } = useAccount();
 
+  const tokenPrice = 0.00008;
+  const targetDate = new Date("2025-01-01T00:00:00Z").getTime();
+
   // State for contribution and presale data
   const [contribution, setContribution] = useState(0);
   const [totalContributed, setTotalContributed] = useState(0); // Example default
@@ -37,7 +40,68 @@ const Presale: React.FC = () => {
   const [contributionAmount, setContributionAmount] = useState(0);
   const [tokensPurchased, setTokensPurchased] = useState(0);
 
-  const tokenPrice = 0.00008;
+  const [referralCode, setReferralCode] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [hasCopied, setHasCopied] = useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(`https://noma.money/presale?${referralCode}`).then(() => {
+      setHasCopied(true);
+      setTimeout(() => setHasCopied(false), 2000); // Reset after 2 seconds
+    });
+  };
+
+  useEffect(() => {
+    const fetchReferralCode = async () => {
+      if (!isConnected || !address) return;
+
+      try {
+        const response = await fetch('http://localhost:3000/referral', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ address }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          setReferralCode(data.referralCode);
+          setErrorMessage('');
+        } else {
+          setErrorMessage(data.error || 'An error occurred while fetching the referral code.');
+        }
+      } catch (error) {
+        setErrorMessage('Failed to connect to the server. Please try again later.');
+        console.error('Error fetching referral code:', error);
+      }
+    };
+
+    fetchReferralCode();
+  }, [isConnected, address]); // Run whenever isConnected or address changes
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      if (difference <= 0) {
+        clearInterval(interval);
+        setTimeLeft("00:00:00");
+        return;
+      }
+
+      const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((difference / (1000 * 60)) % 60);
+      const seconds = Math.floor((difference / 1000) % 60);
+
+      setTimeLeft(
+        `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`
+      );
+    }, 1000);
+    return () => clearInterval(interval); // Cleanup interval on component unmount
+  }, [targetDate]);
 
   async function addBaseNetwork() {
       try {
@@ -119,7 +183,7 @@ const Presale: React.FC = () => {
               p={4}
               borderRadius="lg"
               border="2px solid white"
-              bg="#2d2f33"
+              // bg="#2d2f33"
               boxShadow="lg"
             >
           {/* Welcome and Stats Section */}
@@ -135,7 +199,7 @@ const Presale: React.FC = () => {
                 </Text>
                 </Box>
                 <Box>
-                <Text fontSize={isMobile ? "sm": "lg"} fontWeight="bold" color="white">
+                <Text fontSize={isMobile ? "sm": "lg"} fontWeight="bold" color="#54FF36">
                 {address ? `${address.slice(0, 6)}...${address.slice(-6)}` : "Not connected"}
               </Text>
                 </Box>
@@ -190,10 +254,12 @@ const Presale: React.FC = () => {
           </SimpleGrid>
 
           {/* Description */}
-            <Box mt={50} color="gray.300" fontSize="sm" lineHeight="tall" p={4} w={isMobile? 280 : 600}>
+            {/* <Box mt={50} color="gray.300" fontSize="sm" lineHeight="tall" p={4} w={isMobile? 280 : 600}>
+ 
+
                <HStack>
-                <Box>Make sure your wallet is connected to the Base network to participate in the presale.
-                 To add the Base network to your web3 wallet please click the button below.</Box> 
+                <Box>In order to participate in the presale, you need a compatible wallet connected to the Base network.
+                 To add the network to your web3 wallet please click the button below.</Box> 
                </HStack>
                <Button
                 mt={4}
@@ -213,10 +279,10 @@ const Presale: React.FC = () => {
                 Add Base
               </Button>
               <br /><br /><br />
-            </Box>
-
+            </Box> */}
+              <Box mt={10}></Box>
               <SimpleGrid columns={{ base: 1, md: 2 }}   gap={4}>
-                <Box bg="gray.700" borderRadius={"10px"} p={2}>
+                <Box bg="gray.700"  p={2}>
                 <StatRoot>
                 <StatLabel fontSize="md" lineHeight="5px" ml={2}>
                 Contribution Amount
@@ -246,7 +312,8 @@ const Presale: React.FC = () => {
                     return setContributionAmount(e.value);
                   }}
                 />
-                  <Button
+                {allowance == 0 ? (
+                    <Button
                     ml={4}
                     variant={"outline"}
                     colorScheme="blue"
@@ -257,15 +324,45 @@ const Presale: React.FC = () => {
                     borderRadius={10}
                     mt={10}
                     mb={5}
-                    disabled={contributionAmount === 0}
-                  
+                    disabled={!isConnected || contributionAmount === 0}
                   >
-                    Deposit
+                   Approve
                   </Button> 
+                ) : <></>}
                 </HStack>
                 </Box>
-                <Box bg="gray.700" borderRadius={"10px"} p={4} >
-                  <HStack columns={4}>
+                <Box bg="gray.700" p={4} >
+                <HStack  columns={3}> 
+                  <Box > 
+                      <Text 
+                        fontSize={{ base: "11px", sm: "11px", md: "14px", lg: "14px" }} 
+                      >Token price </Text>
+                    </Box>
+                    <Box w={"110px"}> 
+                      <Text 
+                        color="#54FF36" 
+                        fontWeight={"bold"} 
+                        fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }} 
+                      >{commify(tokenPrice)}</Text> 
+                    </Box>
+                    <Box w="auto" ml={-5}>
+                    <Image
+                        h={5}
+                        src="https://cryptologos.cc/logos/ethereum-eth-logo.png"
+                        // visibility={isMobile ? "hidden" : "initial"}
+                        ml={"-6px"}
+                      /> 
+                    </Box>
+                    <Box w="auto" > 
+                      <Text 
+                      fontWeight={"bold"} 
+                      fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }} 
+                      
+                      >{isMobile? "":<>&nbsp;</>}ETH</Text> 
+                    </Box> 
+                  </HStack> 
+
+                  <HStack columns={3} mt={2}>
                      <Box > 
                       <Text 
                         fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }} 
@@ -290,15 +387,17 @@ const Presale: React.FC = () => {
                       <Text 
                         fontWeight={"bold"} 
                         fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }} 
-                      >ETH</Text>
+                      >&nbsp;ETH</Text>
                     </Box>                    
                   </HStack>
-                  {isMobile ? <br />: ""}
-                  <HStack mt={2} columns={3}>
-                     <Box > 
-                      <Text 
-                        fontSize={{ base: "11px", sm: "11px", md: "14px", lg: "14px" }} 
-                      >You get </Text>
+
+                  {/* {isMobile ? <br />: ""} */}
+
+                  <HStack   columns={3} mt={2}>
+                     <Box> 
+                        <Text fontSize={{ base: "11px", sm: "11px", md: "14px", lg: "14px" }}>
+                          You get 
+                        </Text>
                     </Box>
                     <Box w={"110px"}> 
                       <Text 
@@ -319,12 +418,65 @@ const Presale: React.FC = () => {
                       fontWeight={"bold"} 
                       fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }} 
                       
-                      >{isMobile? "":<>&nbsp;</>}$NOMA</Text> 
+                      >&nbsp;&nbsp;$NOMA</Text> 
                     </Box>
                   </HStack>
+
+                 
                 </Box>
               
               </SimpleGrid>
+
+              <Box 
+            mt={5} 
+            alignContent={"center"} 
+            backgroundColor="gray.600" 
+            fontSize="sm" 
+            lineHeight="tall" 
+            p={4} 
+            w={"auto"} 
+            border="1px solid" 
+          >
+            <Box w={isMobile?"100%":"55%"}>
+              {isConnected ? (
+                <Flex align="left" gap={1} direction={isMobile? "column" : "row"} alignItems="left" justifyContent="space-between">
+                <Box mt={1}>
+                <Text fontSize={"sm"} >Your referral URL is</Text>
+                </Box>
+                <Box>
+                <Text 
+                  p={1} 
+                  backgroundColor="ivory" 
+                  fontStyle="italic" 
+                  color="black" 
+                  fontSize={"xs"}
+                  w={"280px"}
+                >
+                  https://noma.money/presale?{referralCode}
+                </Text>
+                </Box>
+                <Box>
+                  <Button
+                  h={8}
+                  mt={isMobile?3:-1}
+                  w={"80px"}
+                  borderRadius={10}
+                  onClick={handleCopy}
+                  colorScheme="white"
+                  variant="ghost"
+                  bg="transparent"
+                  border="2px solid"
+                  color="white"
+                  _hover={{ bg: "rgba(0, 0, 255, 0.1)" }}
+                  _active={{ bg: "rgba(0, 0, 255, 0.2)" }}
+                >
+                  {hasCopied ? "Copied!" : "Copy"}
+                </Button>
+                </Box>
+              </Flex>): <>Please login with your wallet</>}
+            </Box>
+
+            </Box>              
         </Box>
         <br />  <br />  <br />
       </VStack>
