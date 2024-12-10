@@ -181,7 +181,7 @@ const Bootstrap: React.FC = () => {
               </Text>
             </Box>
 
-            <Box mt={10} p={2} border="2px solid white" p={4} borderRadius={10} minH="250px" backgroundColor={"#37393d"}>
+            <Box mt={2} p={2} border="2px solid white" p={4} borderRadius={10} minH="250px" backgroundColor={"#37393d"}>
               <SimpleGrid columns={isMobile ? 1 : 2} spacing={8}>
                 <Box>
                   <HStack spacing={4} align="center" justify={isMobile ? "center" : "flex-start"}>
