@@ -11,7 +11,7 @@ import {
   Button,
   Flex,
 } from "@chakra-ui/react";
-import { useAccount } from "wagmi";
+import { useAccount, useBalance } from "wagmi";
 import { isMobile } from "react-device-detect";
 import { Slider } from "../components/ui/slider"
 import {
@@ -22,6 +22,8 @@ import {
 
 import { commify } from "../utils";
 import Logo from "../assets/images/noma_logo_transparent.png";
+import { ethers, formatEther } from "ethers"; // Import ethers.js
+import { ProgressLabel, ProgressBar, ProgressRoot, ProgressValueText } from "../components/ui/progress"
 
 const Presale: React.FC = () => {
   const { address, isConnected } = useAccount();
@@ -36,7 +38,6 @@ const Presale: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState("00:00:00"); // Example default
 
   const [allowance, setAllowance] = useState(0);
-  const [balance, setBalance] = useState(0);
   const [contributionAmount, setContributionAmount] = useState(0);
   const [tokensPurchased, setTokensPurchased] = useState(0);
 
@@ -44,12 +45,18 @@ const Presale: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [hasCopied, setHasCopied] = useState(false);
 
+
   const handleCopy = () => {
     navigator.clipboard.writeText(`https://noma.money/presale?${referralCode}`).then(() => {
       setHasCopied(true);
       setTimeout(() => setHasCopied(false), 2000); // Reset after 2 seconds
     });
   };
+
+  const balance =  useBalance({
+    address: address,
+  });
+ 
 
   useEffect(() => {
     const fetchReferralCode = async () => {
@@ -252,7 +259,15 @@ const Presale: React.FC = () => {
             </Flex>
             </Box>
           </SimpleGrid>
-
+            <Box w={isMobile?"88%":"auto"} ml={isMobile?5:"52%"} mt={10} >
+              <ProgressRoot value={null} max={100}  maxW="sm" size="lg">
+                <HStack gap="5">
+                  <ProgressLabel>Progress</ProgressLabel>
+                  <ProgressBar flex="1" defaultValue={0}/>
+                  <ProgressValueText>0%</ProgressValueText>
+                </HStack>
+              </ProgressRoot>
+              </Box>
           {/* Description */}
             {/* <Box mt={50} color="gray.300" fontSize="sm" lineHeight="tall" p={4} w={isMobile? 280 : 600}>
  
@@ -280,7 +295,10 @@ const Presale: React.FC = () => {
               </Button>
               <br /><br /><br />
             </Box> */}
-              <Box mt={10}></Box>
+
+
+
+              <Box mt={10} ></Box>
               <SimpleGrid columns={{ base: 1, md: 2 }}   gap={4}>
                 <Box bg="gray.700"  p={2}>
                 <StatRoot>
@@ -288,7 +306,7 @@ const Presale: React.FC = () => {
                 Contribution Amount
               </StatLabel>
               <Text fontSize={13}  fontStyle={"italic"} m={2} mt={-2}>
-                Choose your contribution amount (min 0.25 max 5 ETH)
+                Choose your contribution amount {isMobile?<br />:<></>} (min 0.25 max 5 ETH)
               </Text>
                 </StatRoot>
                 <HStack spacing={4} align="center" justify="center">
@@ -332,7 +350,38 @@ const Presale: React.FC = () => {
                 </HStack>
                 </Box>
                 <Box bg="gray.700" p={4} >
-                <HStack  columns={3}> 
+                <HStack columns={3}>
+                  <Box w={isMobile?"64px":"80px"}> 
+                      <Text 
+                        fontSize={{ base: "11px", sm: "11px", md: "14px", lg: "14px" }} 
+                      >Balance </Text>
+                    </Box>
+                    <Box w={"110px"}> 
+                      <Text 
+                        color="#54FF36" 
+                        fontWeight={"bold"} 
+                        fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }} 
+                      >{Number(commify(balance.data?.formatted)).toFixed(5)}</Text> 
+                    </Box>
+                    <Box w="auto" ml={-5}>
+                    <Image
+                        h={5}
+                        src="https://cryptologos.cc/logos/ethereum-eth-logo.png"
+                        // visibility={isMobile ? "hidden" : "initial"}
+                        ml={"-6px"}
+                      /> 
+                    </Box>
+                    <Box w="auto" > 
+                      <Text 
+                      fontWeight={"bold"} 
+                      fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }} 
+                      
+                      >{isMobile? "":<>&nbsp;</>}ETH</Text> 
+                    </Box>  
+
+                </HStack>
+
+                <HStack  mt={3} columns={3}>                  
                   <Box > 
                       <Text 
                         fontSize={{ base: "11px", sm: "11px", md: "14px", lg: "14px" }} 
@@ -362,7 +411,7 @@ const Presale: React.FC = () => {
                     </Box> 
                   </HStack> 
 
-                  <HStack columns={3} mt={2}>
+                  <HStack columns={3} mt={3}>
                      <Box > 
                       <Text 
                         fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }} 
@@ -393,7 +442,7 @@ const Presale: React.FC = () => {
 
                   {/* {isMobile ? <br />: ""} */}
 
-                  <HStack   columns={3} mt={2}>
+                  <HStack   columns={3} mt={3}>
                      <Box> 
                         <Text fontSize={{ base: "11px", sm: "11px", md: "14px", lg: "14px" }}>
                           You get 
@@ -440,6 +489,7 @@ const Presale: React.FC = () => {
             <Box w={isMobile?"100%":"55%"}>
               {isConnected ? (
                 <Flex align="left" gap={1} direction={isMobile? "column" : "row"} alignItems="left" justifyContent="space-between">
+
                 <Box mt={1}>
                 <Text fontSize={"sm"} >Your referral URL is</Text>
                 </Box>
@@ -450,7 +500,7 @@ const Presale: React.FC = () => {
                   fontStyle="italic" 
                   color="black" 
                   fontSize={"xs"}
-                  w={"280px"}
+                  w={"260px"}
                 >
                   https://noma.money/presale?{referralCode}
                 </Text>
@@ -475,6 +525,7 @@ const Presale: React.FC = () => {
                 </Box>
               </Flex>): <>Please login with your wallet</>}
             </Box>
+
 
             </Box>              
         </Box>
