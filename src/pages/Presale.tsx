@@ -9,7 +9,7 @@ import {
   Image,
   Text,
   Button,
-  Flex,
+  Flex
 } from "@chakra-ui/react";
 import { useAccount, useBalance, useContractWrite } from "wagmi";
 import { isMobile } from "react-device-detect";
@@ -19,13 +19,20 @@ import {
   StatLabel,
   StatValueText,
 } from "../components/ui/stat";
+
+import { Toaster, toaster } from "../components/ui/toaster"
+
 import { useSearchParams } from "react-router-dom"; // Import useSearchParams
 
-import { commify } from "../utils";
+import { commify, generateBytes32String } from "../utils";
 import Logo from "../assets/images/noma_logo_transparent.png";
-import { ethers, formatEther, parseEther } from "ethers"; // Import ethers.js
+import { ethers, formatEther, parseEther, encodeBytes32String } from "ethers"; // Import ethers.js
 import { ProgressLabel, ProgressBar, ProgressRoot, ProgressValueText } from "../components/ui/progress"
+import PresaleDetails from "../components/PresaleDetails";
 import usePresaleContract from '../hooks/usePresaleContract';
+
+import {presaleContractAddress} from "../config";
+
 const PresaleArtifact = await import(`../assets/Presale.json`);
 const PresaleAbi = PresaleArtifact.abi;
 
@@ -37,7 +44,6 @@ const Presale: React.FC = () => {
 
   const tokenPrice = 0.00008;
   const targetDate = new Date("2025-01-01T00:00:00Z").getTime();
-  const presaleContractAddress = "0xB1129932E649Afbc05BA90eF38084F452140492C";
 
   // State for contribution and presale data
   const [timeLeft, setTimeLeft] = useState("00:00:00"); // Example default
@@ -51,7 +57,7 @@ const Presale: React.FC = () => {
   const [hasCopied, setHasCopied] = useState(false);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(`https://noma.money/presale?r=${referralCode}`).then(() => {
+    navigator.clipboard.writeText(`http://localhost:5173/presale?r=${referralCode}`).then(() => {
       setHasCopied(true);
       setTimeout(() => setHasCopied(false), 2000); // Reset after 2 seconds
     });
@@ -63,18 +69,23 @@ const Presale: React.FC = () => {
     finalized,
     softCapReached,
     contributions,
-    totalReferred
+    totalReferred,
+    referralCount
   } = usePresaleContract(
+    "ganache",
+    address,
+    referralCode
+  );
+
+  const { refetch: fetchPresaleInfo } = usePresaleContract(
     "ganache",
     address,
     urlReferralCode
   );
 
    contributions = Number(formatEther(contributions)).toFixed(4);
+   console.log({ totalRaised, participantCount, finalized, softCapReached, contributions, totalReferred, referralCount });
 
-  //  console.log(`Total raised is ${totalRaised}`);
-  console.log(`Contributions: ${contributions}`);
-  console.log(`Total Referred: ${totalReferred}`);
   const balance =  useBalance({
     address: address,
   });
@@ -83,13 +94,15 @@ const Presale: React.FC = () => {
     address: address,
   });
 
-  const { 
-    refetch: refetchPresaleInfo
-  } = usePresaleContract(
-    "ganache",
-    address,
-    urlReferralCode
-  );
+  const presaleData = {
+    isMobile,
+    balance,
+    tokenPrice,
+    contributions,
+    contributionAmount,
+    tokensPurchased,
+    Logo
+};
 
   const { 
     isLoading: contributing, 
@@ -98,13 +111,26 @@ const Presale: React.FC = () => {
     address: presaleContractAddress,
     abi: PresaleAbi,
     functionName: "contribute",
-    args: [urlReferralCode],
+    args: [generateBytes32String(urlReferralCode)],
     onSuccess(data) {
-      console.log("transaction sent:", data.hash);
+      console.log(`transaction successful: ${data.hash} referral code: ${urlReferralCode}`);
       refetchBalance();
-      refetchPresaleInfo();
+      fetchPresaleInfo();
+      toaster.create({
+        title: "Success",
+        description: "Thanks for contributing!",
+      })
+      setTimeout(() => {
+        window.location.reload();
+    }, 3000); // 3000ms = 3 seconds
     },
     onError(error) {
+      const msg = error.message.indexOf("exceeds the balance of the account") > -1 ? "Insufficient balance" : 
+                  error.message.indexOf("Already contributed") ? "Already contributed" : error.message;
+      toaster.create({
+        title: "Error",
+        description: msg,
+      })
       console.log(error)
       console.error("failed:", error);
     }
@@ -276,190 +302,74 @@ const Presale: React.FC = () => {
               <Box mt={10} ></Box>
               <SimpleGrid columns={{ base: 1, md: 2 }}  gap={4}>
                 {contributions == 0 ? (
-                                  <Box bg="gray.600" border="1px solid white" p={2}>
-                                  <StatRoot>
-                                  <StatLabel fontSize="md" lineHeight="5px" ml={2}>
-                                  Contribution Amount
-                                </StatLabel>
-                                <Text fontSize={13}  fontStyle={"italic"} m={2} mt={-2}>
-                                  Choose your contribution amount {isMobile?<br />:<></>} (min 0.25 max 5 ETH)
-                                </Text>
-                                  </StatRoot>
-                                  <HStack spacing={4} align="center" justify="center">
-                                  <Slider
-                                    step={0.001}
-                                    defaultValue={[0.5]}
-                                    variant="outline"
-                                    w={{ base: "140px", sm: "140px", md: "250px", lg: "250px" }} // Responsive widths
-                                    marks={[
-                                      { value: 0, label: "0.25" },
-                                      { value: 5, label: "5" },
-                                    ]}
-                                    min={0}
-                                    max={5.0}
-                                    ml={isMobile? 4 : 2}
-                                    mt="5%"
-                                    onValueChange={(e) => {
-                                      if (e.value < 0.25) {
-                                        return setContributionAmount(0.25);
-                                      }
-                                      return setContributionAmount(e.value);
-                                    }}
-                                  />
-                                  {allowance === 0 ? (
-                                    <Button
-                                      ml={4}
-                                      variant={"outline"}
-                                      colorScheme="blue"
-                                      w={{ base: "60px", sm: "60px", md: "100px", lg: "100px" }}
-                                      fontSize={{ base: "11px", sm: "11px", md: "14px", lg: "14px" }}
-                                      maxH={40}
-                                      backgroundColor={"gray.900"}
-                                      borderRadius={10}
-                                      mt={10}
-                                      mb={5}
-                                      disabled={!isConnected || contributionAmount === 0 || contributing}
-                                      onClick={() => {
-                                        if (contributionAmount < 0.25 || contributionAmount > 5) {
-                                          setErrorMessage("Contribution must be between 0.25 and 5 ETH.");
-                                          return;
-                                        }
-                                        setErrorMessage(""); // Clear any previous error
-                                        contribute({
-                                          args: [referralCode],
-                                          from: address,
-                                          value: parseEther(contributionAmount.toString()),
-                                        });
-                                      }}
-                                    >
-                                      {contributing ? "Processing..." : "Deposit"}
-                                    </Button>
-                                  ) : <></>}
-                                  </HStack>
-                                  </Box>): <></>}
-                <Box bg="gray.600" border="1px solid white" p={4} >
-                <HStack columns={3}>
-                  <Box w={isMobile?"64px":"80px"}> 
-                      <Text 
-                        fontSize={{ base: "11px", sm: "11px", md: "14px", lg: "14px" }} 
-                      >Balance </Text>
-                    </Box>
-                    <Box w={"110px"}> 
-                      <Text 
-                        color="#54FF36" 
-                        fontWeight={"bold"} 
-                        fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }} 
-                      >{commify(Number(balance.data?.formatted).toFixed(5))}</Text> 
-                    </Box>
-                    <Box w="auto" ml={-5}>
-                    <Image
-                        h={5}
-                        src="https://cryptologos.cc/logos/ethereum-eth-logo.png"
-                        // visibility={isMobile ? "hidden" : "initial"}
-                        ml={"-6px"}
-                      /> 
-                    </Box>
-                    <Box w="auto" > 
-                      <Text 
-                      fontWeight={"bold"} 
-                      fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }} 
-                      
-                      >{isMobile? "":<>&nbsp;</>}ETH</Text> 
-                    </Box>  
+                    <Box bg="gray.600" border="1px solid white" p={2}>
+                    <StatRoot>
+                    <StatLabel fontSize="md" lineHeight="5px" ml={2}>
+                    Contribution Amount
+                  </StatLabel>
+                  <Text fontSize={13}  fontStyle={"italic"} m={2} mt={-2}>
+                    Choose your contribution amount {isMobile?<br />:<></>} (min 0.25 max 5 ETH)
+                  </Text>
+                    </StatRoot>
+                    <HStack spacing={4} align="center" justify="center">
+                    <Slider
+                      step={0.001}
+                      defaultValue={[0.5]}
+                      variant="outline"
+                      w={{ base: "140px", sm: "140px", md: "250px", lg: "250px" }} // Responsive widths
+                      marks={[
+                        { value: 0, label: "0.25" },
+                        { value: 5, label: "5" },
+                      ]}
+                      min={0}
+                      max={5.0}
+                      ml={isMobile? 4 : 2}
+                      mt="5%"
+                      onValueChange={(e) => {
+                        if (e.value < 0.25) {
+                          return setContributionAmount(0.25);
+                        }
+                        return setContributionAmount(e.value);
+                      }}
+                    />
+                    {allowance === 0 ? (
+                        <>
+                      <Button
+                        ml={4}
+                        variant={"outline"}
+                        colorScheme="blue"
+                        w={{ base: "60px", sm: "60px", md: "100px", lg: "100px" }}
+                        fontSize={{ base: "11px", sm: "11px", md: "14px", lg: "14px" }}
+                        maxH={40}
+                        backgroundColor={"gray.900"}
+                        borderRadius={10}
+                        mt={10}
+                        mb={5}
+                        disabled={!isConnected || contributionAmount === 0 || contributing}
+                        onClick={() => {
+                          if (contributionAmount < 0.25 || contributionAmount > 5) {
+                            setErrorMessage("Contribution must be between 0.25 and 5 ETH.");
+                            return;
+                          }
+                          setErrorMessage(""); // Clear any previous error
+                          contribute({
+                            args: [generateBytes32String(urlReferralCode)],
+                            from: address,
+                            value: parseEther(contributionAmount.toString()),
+                          });
+                        }}
+                      >
+                      {contributing ? "Loading..." : "Deposit"}
+                    </Button>
+                    <Toaster />
+                    </>
 
-                </HStack>
-
-                <HStack  mt={3} columns={3}>                  
-                  <Box > 
-                      <Text 
-                        fontSize={{ base: "11px", sm: "11px", md: "14px", lg: "14px" }} 
-                      >Token price </Text>
-                    </Box>
-                    <Box w={"110px"}> 
-                      <Text 
-                        color="#54FF36" 
-                        fontWeight={"bold"} 
-                        fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }} 
-                      >{commify(tokenPrice)}</Text> 
-                    </Box>
-                    <Box w="auto" ml={-5}>
-                    <Image
-                        h={5}
-                        src="https://cryptologos.cc/logos/ethereum-eth-logo.png"
-                        // visibility={isMobile ? "hidden" : "initial"}
-                        ml={"-6px"}
-                      /> 
-                    </Box>
-                    <Box w="auto" > 
-                      <Text 
-                      fontWeight={"bold"} 
-                      fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }} 
-                      
-                      >{isMobile? "":<>&nbsp;</>}ETH</Text> 
-                    </Box> 
-                  </HStack> 
-
-                  <HStack columns={3} mt={3}>
-                     <Box > 
-                      <Text 
-                        fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }} 
-                      >Contributed </Text>
-                    </Box>
-                    <Box w={"79px"}> 
-                      <Text 
-                        color="#54FF36" 
-                        fontWeight={"bold"} 
-                        fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }} 
-                      >{contributions == 0 ? contributionAmount : contributions}</Text> 
-                    </Box>
-                    <Box w="auto"> 
-                    <Image
-                        h={5}
-                        src="https://cryptologos.cc/logos/ethereum-eth-logo.png"
-                        // visibility={isMobile ? "hidden" : "initial"}
-                      /> 
-                    </Box>
-                    <Box w="auto"> 
-                      <Text 
-                        fontWeight={"bold"} 
-                        fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }} 
-                      >&nbsp;ETH</Text>
-                    </Box>                    
+                  ) : <></>}
                   </HStack>
-
-                  {/* {isMobile ? <br />: ""} */}
-
-                  <HStack   columns={3} mt={3}>
-                     <Box> 
-                        <Text fontSize={{ base: "11px", sm: "11px", md: "14px", lg: "14px" }}>
-                          {contributions === 0 ? "You get" : "Balance"}
-                        </Text>
-                    </Box>
-                    <Box w={"110px"}> 
-                      <Text 
-                        color="#54FF36" 
-                        fontWeight={"bold"} 
-                        fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }} 
-                      >{commify(tokensPurchased)}</Text> 
-                    </Box>
-                    <Box w="auto" ml={isMobile? -2 : 0}>
-                    <Image
-                        h={4}
-                        src={Logo}
-                        // visibility={isMobile ? "hidden" : "initial"}
-                      /> 
-                    </Box>
-                    <Box w="auto" > 
-                      <Text 
-                      fontWeight={"bold"} 
-                      fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }} 
-                      
-                      >&nbsp;&nbsp;$NOMA</Text> 
-                    </Box>
-                  </HStack>
-
-                 
-                </Box>
+                  </Box>): <></>}
+                {contributions == 0 ? (
+                  <PresaleDetails {...presaleData} />
+              ): <></>}
               
               </SimpleGrid>
 
@@ -474,11 +384,67 @@ const Presale: React.FC = () => {
             border="1px solid" 
           >
             <Box w={isMobile?"100%":"55%"} p={1}>
+              {contributions > 0 ? (
+                <StatRoot mb={10}>
+                <StatLabel fontSize="md" lineHeight="5px">
+                  Contribution Details
+                </StatLabel>
+                <Box bg="gray.600"  p={4}>
+                <HStack mt={1} spacing={4}>
+                <Box>
+                    <Text fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }}>Contributed</Text>
+                </Box>
+                <Box w={isMobile ? "69px" : "80px"}>
+                    <Text
+                        color="#54FF36"
+                        fontWeight="bold"
+                        fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }}
+                    >
+                        {contributions === 0 ? contributionAmount : contributions}
+                    </Text>
+                </Box>
+                <Box w="auto">
+                    <Image h={5} src="https://cryptologos.cc/logos/ethereum-eth-logo.png" />
+                </Box>
+                <Box w="auto">
+                    <Text fontWeight="bold" fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }}>
+                        &nbsp;ETH
+                    </Text>
+                </Box>
+            </HStack>
+
+            <HStack mt={3} spacing={4}>
+                <Box>
+                    <Text fontSize={{ base: "11px", sm: "11px", md: "14px", lg: "14px" }}>
+                        {contributions === 0 ? "You get" : "Balance"}
+                    </Text>
+                </Box>
+                <Box w={"110px"}>
+                    <Text
+                        color="#54FF36"
+                        fontWeight="bold"
+                        fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }}
+                    >
+                        {commify(tokensPurchased)}
+                    </Text>
+                </Box>
+                <Box w="auto" ml={isMobile ? -2 : 0}>
+                    <Image h={4} src={Logo} />
+                </Box>
+                <Box w="auto">
+                    <Text fontWeight="bold" fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }}>
+                        &nbsp;$NOMA
+                    </Text>
+                </Box>
+            </HStack>
+        </Box>
+                </StatRoot>
+              ) : <></>}
               <StatRoot>
                 <StatLabel fontSize="md" lineHeight="5px">
                  Referral Program
                 </StatLabel>
-              <Text fontSize={13} fontStyle={"italic"} mt={-2}>
+              <Text fontSize={isMobile ? "11px" : "14px"} fontStyle={"italic"} mt={-2}>
                 For each user referred you get 3% of their contribution
               </Text>
                 </StatRoot>
@@ -488,7 +454,7 @@ const Presale: React.FC = () => {
                   <Text>Referred</Text>
                 </Box>
                 <Box color="#54FF36" >
-                  0
+                  {Number(referralCount)}
                 </Box><b>users</b>
               </HStack>
               <HStack columns={2} p={1} mt={2}>
@@ -496,7 +462,7 @@ const Presale: React.FC = () => {
                   <Text>Earned</Text>
                 </Box>
                 <Box color="#54FF36" >
-                  {formatEther(totalReferred) * 3/100}
+                  {Number(commify(formatEther(totalReferred) * 0.03)).toFixed(4)}
                 </Box><b>ETH</b>
               </HStack>              
             <Box w={isMobile?"100%":"55%"} mt={4} ml={1}>
@@ -514,7 +480,7 @@ const Presale: React.FC = () => {
                   fontSize={"xs"}
                   w={"260px"}
                 >
-                  https://noma.money/presale?{referralCode}
+                  http://localhost:5173/presale?{referralCode.substring(0,8)}.
                 </Text>
                 </Box>
                 <Box>
