@@ -46,7 +46,7 @@ const Presale: React.FC = () => {
   const urlReferralCode = searchParams.get("r") || ""; // Fallback to empty string
 
   const tokenPrice = 0.00008;
-  const targetDate = new Date("2025-01-01T00:00:00Z").getTime();
+  const targetDate = new Date("2024-01-01T00:00:00Z").getTime();
   const hardCap = 700;
   const softCap = 280;
   // State for contribution and presale data
@@ -185,28 +185,29 @@ const Presale: React.FC = () => {
   }, [isConnected, address]); // Run whenever isConnected or address changes
 
   useEffect(() => {
-
-      const interval = setInterval(() => {
+    const interval = setInterval(() => {
       const now = new Date().getTime();
       const difference = targetDate - now;
-
+  
       if (difference <= 0) {
         clearInterval(interval);
-        setTimeLeft("00:00:00");
+        setTimeLeft("00:00:00:00");
         return;
       }
-
+  
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
       const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
       const minutes = Math.floor((difference / (1000 * 60)) % 60);
       const seconds = Math.floor((difference / 1000) % 60);
-
+  
       setTimeLeft(
-        `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`
+        `${String(days).padStart(2, "0")}:${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`
       );
     }, 1000);
-
+  
     return () => clearInterval(interval); // Cleanup interval on component unmount
   }, [targetDate]);
+  
 
 
   useEffect(() => {
@@ -274,7 +275,7 @@ const Presale: React.FC = () => {
               <Box>
                 <StatRoot>
                   <StatLabel fontSize="sm" lineHeight="5px">
-                    Total Contributed
+                    Contributed
                   </StatLabel>
                   <StatValueText
                     value={totalRaised}
@@ -288,7 +289,7 @@ const Presale: React.FC = () => {
               <Box>
                 <StatRoot>
                   <StatLabel fontSize="sm" lineHeight="5px">
-                    Total Contributors
+                    # Contributors
                   </StatLabel>
                   <StatValueText fontSize="md" lineHeight="1px" value={participantCount} color="#54FF36" />
                 </StatRoot>
@@ -299,7 +300,7 @@ const Presale: React.FC = () => {
                   <StatLabel fontSize="sm" lineHeight="5px">
                     Time Left
                   </StatLabel>
-                  <StatValueText fontSize="md" lineHeight="5px" color="#54FF36">
+                  <StatValueText w={"130px"} fontSize="md" lineHeight="5px" color="#54FF36">
                     {timeLeft}
                   </StatValueText>
                 </StatRoot>
@@ -308,7 +309,7 @@ const Presale: React.FC = () => {
             </Box>
           </SimpleGrid>
             <Box w={isMobile?"88%":"auto"} ml={isMobile?5:"52%"} mt={5} >
-              <ProgressRoot value={progress} max={100}  maxW="sm" size="lg">
+              <ProgressRoot value={timeLeft != "00:00:00:00" ? progress : null} max={100}  maxW="sm" size="lg">
                 <HStack gap="5">
                   <Box mt={5} >
                     <ProgressLabel >Progress <br /> <br />
@@ -414,7 +415,14 @@ const Presale: React.FC = () => {
                   </HStack>
                   </Box>): <></>}
                 {contributions == 0 ? (
-                  <PresaleDetails {...presaleData} />
+                  <>{isConnected ? <PresaleDetails {...presaleData} /> : 
+                  <>
+                    <Box bg="gray.600" border="1px solid white" p={4}>
+                      <Text fontSize="sm" color="white">
+                        Connect your wallet to contribute
+                      </Text>
+                    </Box>
+                  </>}</>
               ): <></>}
             </SimpleGrid>
           <Box 
