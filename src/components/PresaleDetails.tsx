@@ -6,10 +6,10 @@ const PresaleDetails = ({ isMobile, balance, tokenPrice, contributions, contribu
     return (
         <Box bg="gray.600" border="1px solid white" p={4}>
             <HStack spacing={4}>
-                <Box w={isMobile ? "64px" : "80px"}>
+                <Box w={"90px"}>
                     <Text fontSize={{ base: "11px", sm: "11px", md: "14px", lg: "14px" }}>Balance</Text>
                 </Box>
-                <Box w={"110px"}>
+                <Box w={"90px"}>
                     <Text
                         color="#54FF36"
                         fontWeight="bold"
@@ -18,8 +18,8 @@ const PresaleDetails = ({ isMobile, balance, tokenPrice, contributions, contribu
                         {commify(Number(balance.data?.formatted).toFixed(4))}
                     </Text>
                 </Box>
-                <Box w="auto" ml={-5}>
-                    <Image h={5} src="https://cryptologos.cc/logos/ethereum-eth-logo.png" ml={"-5px"} />
+                <Box w="auto" >
+                    <Image h={5} src="https://cryptologos.cc/logos/ethereum-eth-logo.png"  />
                 </Box>
                 <Box w="auto">
                     <Text fontWeight="bold" fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }}>
@@ -28,11 +28,11 @@ const PresaleDetails = ({ isMobile, balance, tokenPrice, contributions, contribu
                 </Box>
             </HStack>
 
-            <HStack mt={3} spacing={4}>
-                <Box>
+            <HStack mt={3} spacing={4} >
+                <Box w={"90px"}>
                     <Text fontSize={{ base: "11px", sm: "11px", md: "14px", lg: "14px" }}>Token price</Text>
                 </Box>
-                <Box w={"110px"}>
+                <Box   w={"90px"} >
                     <Text
                         color="#54FF36"
                         fontWeight="bold"
@@ -41,8 +41,8 @@ const PresaleDetails = ({ isMobile, balance, tokenPrice, contributions, contribu
                         {commify(tokenPrice)}
                     </Text>
                 </Box>
-                <Box w="auto" ml={-5}>
-                    <Image h={5} src="https://cryptologos.cc/logos/ethereum-eth-logo.png" ml={"-6px"} />
+                <Box w="auto">
+                    <Image h={5} src="https://cryptologos.cc/logos/ethereum-eth-logo.png" />
                 </Box>
                 <Box w="auto">
                     <Text fontWeight="bold" fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }}>
@@ -52,10 +52,10 @@ const PresaleDetails = ({ isMobile, balance, tokenPrice, contributions, contribu
             </HStack>
 
             <HStack mt={3} spacing={4}>
-                <Box>
-                    <Text fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }}>Contributed</Text>
+                <Box w={"90px"}>
+                    <Text fontSize={{ base: "11px", sm: "11px", md: "14px", lg: "14px" }}>Contributed</Text>
                 </Box>
-                <Box w={"79px"}>
+                <Box   w={"90px"} >
                     <Text
                         color="#54FF36"
                         fontWeight="bold"
@@ -65,22 +65,22 @@ const PresaleDetails = ({ isMobile, balance, tokenPrice, contributions, contribu
                     </Text>
                 </Box>
                 <Box w="auto">
-                    <Image h={5} src="https://cryptologos.cc/logos/ethereum-eth-logo.png" />
+                    <Image h={5} src="https://cryptologos.cc/logos/ethereum-eth-logo.png"  />
                 </Box>
                 <Box w="auto">
                     <Text fontWeight="bold" fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }}>
-                        &nbsp;ETH
+                        {isMobile ? "" : <>&nbsp;</>}ETH
                     </Text>
                 </Box>
-            </HStack>
+            </HStack>            
 
             <HStack mt={3} spacing={4}>
-                <Box>
+                <Box  w={"90px"} >
                     <Text fontSize={{ base: "11px", sm: "11px", md: "14px", lg: "14px" }}>
                         {contributions === 0 ? "You get" : "Balance"}
                     </Text>
                 </Box>
-                <Box w={"110px"}>
+                <Box  w={"92px"} >
                     <Text
                         color="#54FF36"
                         fontWeight="bold"
@@ -89,12 +89,12 @@ const PresaleDetails = ({ isMobile, balance, tokenPrice, contributions, contribu
                         {commify(tokensPurchased)}
                     </Text>
                 </Box>
-                <Box w="auto" ml={isMobile ? -2 : 0}>
+                <Box w="auto" >
                     <Image h={4} src={Logo} />
                 </Box>
                 <Box w="auto">
                     <Text fontWeight="bold" fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }}>
-                        &nbsp;&nbsp;$NOMA
+                        $NOMA
                     </Text>
                 </Box>
             </HStack>

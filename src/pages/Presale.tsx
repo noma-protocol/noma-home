@@ -21,7 +21,6 @@ import {
 } from "../components/ui/stat";
 
 import { Toaster, toaster } from "../components/ui/toaster"
-
 import { useSearchParams } from "react-router-dom"; // Import useSearchParams
 
 import { commify, generateBytes32String } from "../utils";
@@ -30,8 +29,12 @@ import { ethers, formatEther, parseEther, encodeBytes32String } from "ethers"; /
 import { ProgressLabel, ProgressBar, ProgressRoot, ProgressValueText } from "../components/ui/progress"
 import PresaleDetails from "../components/PresaleDetails";
 import usePresaleContract from '../hooks/usePresaleContract';
+import { set } from "react-ga";
 
-import {presaleContractAddress} from "../config";
+import config from '../config';
+
+const { environment, presaleContractAddress } = config;
+
 
 const PresaleArtifact = await import(`../assets/Presale.json`);
 const PresaleAbi = PresaleArtifact.abi;
@@ -44,7 +47,8 @@ const Presale: React.FC = () => {
 
   const tokenPrice = 0.00008;
   const targetDate = new Date("2025-01-01T00:00:00Z").getTime();
-
+  const hardCap = 700;
+  const softCap = 280;
   // State for contribution and presale data
   const [timeLeft, setTimeLeft] = useState("00:00:00"); // Example default
 
@@ -55,9 +59,13 @@ const Presale: React.FC = () => {
   const [referralCode, setReferralCode] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [hasCopied, setHasCopied] = useState(false);
+  const [progress, setProgress] = useState(null);
+  const [progressSc, setProgressSc] = useState(null);
+
+  const presaleUrl = `${environment == "development" ? "http://localhost:5173":"https://noma.money"}/presale?r=${referralCode}`;
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(`http://localhost:5173/presale?r=${referralCode}`).then(() => {
+    navigator.clipboard.writeText(presaleUrl).then(() => {
       setHasCopied(true);
       setTimeout(() => setHasCopied(false), 2000); // Reset after 2 seconds
     });
@@ -84,7 +92,7 @@ const Presale: React.FC = () => {
   );
 
    contributions = Number(formatEther(contributions)).toFixed(4);
-   console.log({ totalRaised, participantCount, finalized, softCapReached, contributions, totalReferred, referralCount });
+   console.log({ totalRaised, participantCount, finalized, softCapReached, contributions, totalReferred, referralCount, progress });
 
   const balance =  useBalance({
     address: address,
@@ -126,7 +134,8 @@ const Presale: React.FC = () => {
     },
     onError(error) {
       const msg = error.message.indexOf("exceeds the balance of the account") > -1 ? "Insufficient balance" : 
-                  error.message.indexOf("Already contributed") ? "Already contributed" : error.message;
+                  error.message.indexOf("Already contributed") > -1 ? "Already contributed" : 
+                  error.message.toString().indexOf("User rejected the request.") > -1  ? "Rejected operation" : error.message;
       toaster.create({
         title: "Error",
         description: msg,
@@ -137,11 +146,20 @@ const Presale: React.FC = () => {
   }); 
 
   useEffect(() => {
+    const progress = (totalRaised / hardCap) * 100;
+    const progressSc = (totalRaised / softCap) * 100;
+
+    setProgress(progress);
+    setProgressSc(progressSc);
+  }
+  , [totalRaised]);
+
+  useEffect(() => {
     const fetchReferralCode = async () => {
       if (!isConnected || !address) return;
 
       try {
-        const response = await fetch('http://localhost:3000/referral', {
+        const response = await fetch(`${environment == "development" ? "http://localhost:3000" : "https://bootstrap.noma.money"}/referral`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -289,14 +307,38 @@ const Presale: React.FC = () => {
             </Flex>
             </Box>
           </SimpleGrid>
-            <Box w={isMobile?"88%":"auto"} ml={isMobile?5:"52%"} mt={10} >
-              <ProgressRoot value={null} max={100}  maxW="sm" size="lg">
+            <Box w={isMobile?"88%":"auto"} ml={isMobile?5:"52%"} mt={5} >
+              <ProgressRoot value={progress} max={100}  maxW="sm" size="lg">
                 <HStack gap="5">
-                  <ProgressLabel>Progress</ProgressLabel>
-                  <ProgressBar flex="1" defaultValue={0}/>
-                  <ProgressValueText>0%</ProgressValueText>
+                  <Box mt={5} >
+                    <ProgressLabel >Progress <br /> <br />
+
+                    </ProgressLabel>
+                  </Box>
+                  <ProgressBar flex="1" defaultValue={0} />
+                  <ProgressValueText >100%</ProgressValueText>
                 </HStack>
               </ProgressRoot>
+
+              <Flex justify="space-between" align="center" w="160px" mt={3}>
+                <Box>
+                  <Text fontSize="sm" color="#a1a1aa">Hardcap</Text>
+                </Box>
+                <Box>
+                  <Text fontStyle="italic" color="#54FF36">
+                     &nbsp;<b>{Number(progress).toFixed(2)}</b>%
+                  </Text>
+                </Box>
+                <Box ml={5}>
+                  <Text fontSize="sm" color="#a1a1aa">Softcap&nbsp;</Text>
+                </Box>
+                <Box>
+                <Text fontStyle="italic" color="#54FF36">
+                  &nbsp;<b>{Number(progressSc).toFixed(2)}</b>%
+                </Text>
+                </Box>
+              </Flex>
+
               </Box>
 
               <Box mt={10} ></Box>
@@ -352,11 +394,15 @@ const Presale: React.FC = () => {
                             return;
                           }
                           setErrorMessage(""); // Clear any previous error
-                          contribute({
-                            args: [generateBytes32String(urlReferralCode)],
-                            from: address,
-                            value: parseEther(contributionAmount.toString()),
-                          });
+                          try {
+                            contribute({
+                              args: [generateBytes32String(urlReferralCode)],
+                              from: address,
+                              value: parseEther(contributionAmount.toString()),
+                            });
+                          } catch (error) {
+                            console.error("Failed to contribute:", error);
+                          }
                         }}
                       >
                       {contributing ? "Loading..." : "Deposit"}
@@ -374,7 +420,7 @@ const Presale: React.FC = () => {
               </SimpleGrid>
 
           <Box 
-            mt={5} 
+            mt={3} 
             alignContent={"center"} 
             backgroundColor="gray.600" 
             fontSize="sm" 
@@ -390,7 +436,7 @@ const Presale: React.FC = () => {
                   Contribution Details
                 </StatLabel>
                 <Box bg="gray.600"  p={4}>
-                <HStack mt={1} spacing={4}>
+                <HStack mt={"2px"} spacing={4}>
                 <Box>
                     <Text fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }}>Contributed</Text>
                 </Box>
@@ -477,10 +523,12 @@ const Presale: React.FC = () => {
                   backgroundColor="ivory" 
                   fontStyle="italic" 
                   color="black" 
-                  fontSize={"xs"}
+                  fontSize={"11px"}
+                  height={"25px"}
                   w={"260px"}
                 >
-                  http://localhost:5173/presale?{referralCode.substring(0,8)}.
+                   
+                  {presaleUrl}
                 </Text>
                 </Box>
                 <Box>
