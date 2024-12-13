@@ -375,7 +375,7 @@ const Presale: React.FC = () => {
                       }}
                     />
                     {allowance === 0 ? (
-                        <>
+                    <>
                       <Button
                         ml={4}
                         variant={"outline"}
@@ -416,9 +416,7 @@ const Presale: React.FC = () => {
                 {contributions == 0 ? (
                   <PresaleDetails {...presaleData} />
               ): <></>}
-              
-              </SimpleGrid>
-
+            </SimpleGrid>
           <Box 
             mt={3} 
             alignContent={"center"} 

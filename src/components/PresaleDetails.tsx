@@ -94,7 +94,7 @@ const PresaleDetails = ({ isMobile, balance, tokenPrice, contributions, contribu
                 </Box>
                 <Box w="auto">
                     <Text fontWeight="bold" fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }}>
-                        $NOMA
+                    &nbsp;$NOMA
                     </Text>
                 </Box>
             </HStack>
