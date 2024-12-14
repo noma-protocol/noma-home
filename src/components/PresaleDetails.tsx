@@ -53,7 +53,7 @@ const PresaleDetails = ({ isMobile, balance, tokenPrice, contributions, contribu
 
             <HStack mt={3} spacing={4}>
                 <Box w={"90px"}>
-                    <Text fontSize={{ base: "11px", sm: "11px", md: "14px", lg: "14px" }}>Contributed</Text>
+                    <Text fontSize={{ base: "11px", sm: "11px", md: "14px", lg: "14px" }}>{contributions > 0 ? "Contributed" : "Contributing"}</Text>
                 </Box>
                 <Box   w={"90px"} >
                     <Text
@@ -61,7 +61,7 @@ const PresaleDetails = ({ isMobile, balance, tokenPrice, contributions, contribu
                         fontWeight="bold"
                         fontSize={{ base: "12px", sm: "12px", md: "14px", lg: "14px" }}
                     >
-                        {contributions === 0 ? contributionAmount : contributions}
+                        {contributions > 0 ?  contributions : contributionAmount}
                     </Text>
                 </Box>
                 <Box w="auto">
@@ -77,7 +77,7 @@ const PresaleDetails = ({ isMobile, balance, tokenPrice, contributions, contribu
             <HStack mt={3} spacing={4}>
                 <Box  w={"90px"} >
                     <Text fontSize={{ base: "11px", sm: "11px", md: "14px", lg: "14px" }}>
-                        {contributions === 0 ? "You get" : "Balance"}
+                        {contributions > 0 ? "Balance" : "You get"}
                     </Text>
                 </Box>
                 <Box  w={"92px"} >
