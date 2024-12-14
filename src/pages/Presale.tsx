@@ -9,7 +9,8 @@ import {
   Image,
   Text,
   Button,
-  Flex
+  Flex,
+  Textarea
 } from "@chakra-ui/react";
 import { useAccount, useBalance, useContractWrite } from "wagmi";
 import { isMobile } from "react-device-detect";
@@ -19,6 +20,11 @@ import {
   StatLabel,
   StatValueText,
 } from "../components/ui/stat";
+import {
+  NumberInputField,
+  NumberInputLabel,
+  NumberInputRoot,
+} from "../components/ui/number-input"
 
 import { Toaster, toaster } from "../components/ui/toaster"
 import { useSearchParams } from "react-router-dom"; // Import useSearchParams
@@ -70,6 +76,22 @@ const Presale: React.FC = () => {
       setTimeout(() => setHasCopied(false), 2000); // Reset after 2 seconds
     });
   };
+
+  const handleAddAmount = () => {
+    const number = (Number(contributionAmount) + 0.001).toFixed(4);
+    if (number > 5) {
+      return;
+    }
+    setContributionAmount(number);
+  }
+
+  const handleSubtractAmount = () => {
+    const number = (Number(contributionAmount) - 0.001).toFixed(4);
+    if (number <= 0) {
+      return;
+    }
+    setContributionAmount(number);
+  }
 
   let { 
     totalRaised,
@@ -237,8 +259,8 @@ const Presale: React.FC = () => {
               w="full"
               maxW="1000px"
               p={4}
-              borderRadius="lg"
-              border="2px solid white"
+              // borderRadius="lg"
+              // border="2px solid white"
               // bg="#2d2f33"
               boxShadow="lg"
             >
@@ -250,9 +272,9 @@ const Presale: React.FC = () => {
             >
               <HStack>
                 <Box>
-                  <Text fontSize="lg" color="white">
-                  Welcome
-                </Text>
+                  <Text fontSize="lg" color="white" >
+                    Welcome
+                  </Text>
                 </Box>
                 <Box>
                 <Text fontSize={isMobile ? "sm": "lg"} fontWeight="bold" color="#54FF36">
@@ -347,47 +369,94 @@ const Presale: React.FC = () => {
                 {contributions == 0 ? (
                     <Box bg="gray.600" border="1px solid white" p={2}>
                     <StatRoot>
-                    <StatLabel fontSize="md" lineHeight="5px" ml={2}>
-                    Contribution Amount
-                  </StatLabel>
-                  <Text fontSize={13}  fontStyle={"italic"} m={2} mt={-2}>
-                    Choose your contribution amount {isMobile?<br />:<></>} (min 0.25 max 5 ETH)
-                  </Text>
+                      <StatLabel fontSize="md" lineHeight="5px" ml={2}>
+                        Contribution Amount
+                      </StatLabel>
+                      <Text fontSize={13}  fontStyle={"italic"} m={2} mt={-2}>
+                        Choose your contribution amount {isMobile?<br />:<></>} (min 0.25 max 5 ETH)
+                      </Text>
                     </StatRoot>
                     <HStack spacing={4} align="center" justify="center">
-                    <Slider
-                      step={0.001}
-                      defaultValue={[0.5]}
-                      variant="outline"
-                      w={{ base: "140px", sm: "140px", md: "250px", lg: "250px" }} // Responsive widths
-                      marks={[
-                        { value: 0, label: "0.25" },
-                        { value: 5, label: "5" },
-                      ]}
-                      min={0}
-                      max={5.0}
-                      ml={isMobile? 4 : 2}
-                      mt="5%"
-                      onValueChange={(e) => {
-                        if (e.value < 0.25) {
-                          return setContributionAmount(0.25);
-                        }
-                        return setContributionAmount(e.value);
+                    <VStack>
+                      <Box>
+                        <NumberInputRoot 
+                          mt={5}
+                          w={isMobile ? "140px": 60}
+                          h={"40px"} 
+                          resize={"none"} 
+                          size="sm" 
+                          variant="outline" 
+                          value={contributionAmount}
+                        >
+                          <NumberInputField
+                            h={'30px'}
+                            defaultValue={0.25}
+                            onChange={(e) => {
+                                return setContributionAmount(e.target.value);
+                              }
+                            }
+                          />
+                        </NumberInputRoot>
+                      </Box>
+                      <Box>
+                      <Slider
+                        step={0.001}
+                        defaultValue={[0.5]}
+                        variant="outline"
+                        w={{ base: "140px", sm: "140px", md: "250px", lg: "250px" }} // Responsive widths
+                        marks={[
+                          { value: 0, label: "0.25" },
+                          { value: 5, label: "5" },
+                        ]}
+                        min={0}
+                        max={5.0}
+                        ml={isMobile? 4 : 2}
+                        mt="3%"
+                        onValueChange={(e) => {
+                          if (e.value < 0.25) {
+                            return setContributionAmount(0.25);
+                          }
+                          return setContributionAmount(e.value);
                       }}
                     />
+                    <br />
+                      </Box>  
+                    </VStack>
                     {allowance === 0 ? (
-                    <>
+                    <Box mt={-5}>
+                    <VStack h={"100px"} p={2} w={"100px"} ml={4} mt={2}>
+                      <HStack>
+                      <Box>
+                        <Button 
+                          backgroundColor={"gray.900"}
+                          variant={"outline"}
+                          colorScheme="blue"
+                          h={"40px"} 
+                          borderRadius={10}
+                          onClick={handleAddAmount}
+                        >+</Button>
+                      </Box>
+                      <Box>
+                        <Button 
+                          backgroundColor={"gray.900"}
+                          variant={"outline"}
+                          colorScheme="blue"
+                          h={"40px"} 
+                          borderRadius={10}
+                          onClick={handleSubtractAmount}
+                        >-</Button>
+                      </Box>
+                      </HStack>
+                      <Box>
                       <Button
-                        ml={4}
+                        ml={1}
                         variant={"outline"}
                         colorScheme="blue"
-                        w={{ base: "60px", sm: "60px", md: "100px", lg: "100px" }}
+                        w={"100px"}
                         fontSize={{ base: "11px", sm: "11px", md: "14px", lg: "14px" }}
                         maxH={40}
                         backgroundColor={"gray.900"}
                         borderRadius={10}
-                        mt={10}
-                        mb={5}
                         disabled={!isConnected || contributionAmount === 0 || contributing}
                         onClick={() => {
                           if (contributionAmount < 0.25 || contributionAmount > 5) {
@@ -408,8 +477,10 @@ const Presale: React.FC = () => {
                       >
                       {contributing ? "Loading..." : "Deposit"}
                     </Button>
+                    </Box>
+                    </VStack>
                     <Toaster />
-                    </>
+                    </Box>
 
                   ) : <></>}
                   </HStack>
@@ -502,7 +573,7 @@ const Presale: React.FC = () => {
                 </StatRoot>
             </Box>
               <HStack columns={2} p={1} mt={2}>
-                  <Box>
+                <Box w="80px">
                   <Text>Referred</Text>
                 </Box>
                 <Box color="#54FF36" >
@@ -510,7 +581,7 @@ const Presale: React.FC = () => {
                 </Box><b>users</b>
               </HStack>
               <HStack columns={2} p={1} mt={2}>
-                  <Box>
+                  <Box w="80px">
                   <Text>Earned</Text>
                 </Box>
                 <Box color="#54FF36" >
