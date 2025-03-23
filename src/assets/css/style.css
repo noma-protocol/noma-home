@@ -1,10 +1,16 @@
-@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&amp;display=swap");
+/* @import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&amp;display=swap"); */
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('GT-Standard-Beta-V6-Light-M.otf') format('opentype');
+  font-weight: normal; /* Adjust if you have multiple weights */
+  font-style: normal;  /* Adjust if you have italic variants */
+}
 
 @import url(vendor/bootstrap.min.css);
-@import url(vendor/gilroy.css);
+/* @import url(vendor/gilroy.css); */
 :root {
-  --primary-font: "Gilroy", sans-serif;
-  --secondary-font: "Poppins", sans-serif;
+  --primary-font: "MyCustomFont", sans-serif;
+  --secondary-font: "MyCustomFont", sans-serif;
   --h1-size: 3.5rem;
   --h1-weight: 600;
   --h2-size: 3rem;
@@ -3320,4 +3326,32 @@ a.page-numbers:hover {
   }
   /* #endregion Modal */
 }
- 
+
+/* Custom changes */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  max-width: 80%;
+  border: 1px solid red;
+  margin: 0 auto;
+}
+.fullwidth {
+  background: orange;
+}
+header {
+  height: 50px;
+  background: #663399;
+}
+.mydiv {
+  /* background: orange; */
+  min-height: 50px;
+}
+footer {
+  height: 50px;
+  background: #bada55;
+}

@@ -1,10 +1,25 @@
-@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&amp;display=swap");
+/* @import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&amp;display=swap"); */
 
 @import url(vendor/bootstrap.min.css);
-@import url(vendor/gilroy.css);
+/* @import url(vendor/gilroy.css); */
+
+@font-face {
+  font-family: 'MyCustomFont1';
+  src: url('../fonts/GT-Standard-Beta-V6-Regular-L.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MyCustomFont2';
+  src: url('../fonts/GT-Standard-Mono-Beta-V2-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
-  --primary-font: "Gilroy", sans-serif;
-  --secondary-font: "Poppins", sans-serif;
+  --primary-font: "MyCustomFont1", sans-serif;
+  --secondary-font: "MyCustomFont2", sans-serif;
   --h1-size: 3.5rem;
   --h1-weight: 600;
   --h2-size: 3rem;
@@ -110,7 +125,7 @@ s,
 samp,
 section,
 small,
-span,
+/* span, */
 strike,
 strong,
 sub,
