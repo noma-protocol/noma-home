@@ -13,9 +13,14 @@ const StyledLink = styled.a`
   }
 `;
 
+const handleGoToDAPP = () => {
+    window.location = "https://app.noma.money"
+}
+
 const Hero: React.FC = () => {
   const { isMenuOpen } = useMenu(); // Access menu state from context
   console.log("isMenuOpen in Hero:", isMenuOpen); // Debugging log
+
 
   return (
     <Box
@@ -49,20 +54,20 @@ const Hero: React.FC = () => {
           fontSize="16px"
           color="black"
           display="flex"
-          animation={`scroll ${isMobile ? "20s" : "40s"} linear infinite`}
+          animation={`scroll ${isMobile ? "10s" : "30s"} linear infinite`}
         >
-          <Box as="span">Earn</Box>
-          <Box as="span" color="gray">&nbsp;<b>$NOMA</b>&nbsp;</Box>
-          <Box as="span">points by participating in our community and promoting the upcoming</Box>
-          <Box as="span" color="gray">&nbsp;<b>bootstrap</b>&nbsp;</Box>
-          <Box as="span">event.&nbsp;&nbsp;Read more</Box>
-          <StyledLink href="https://nomaprotocol.medium.com/bootstrap-event-49c1ad496ab6" target="_blank">
-            &nbsp;<b>here</b>&nbsp;
+          <Box as="span">⚡ Noma </Box>
+          {/* <Box as="span" color="gray">&nbsp;<b>$NOMA</b>&nbsp;</Box> */}
+          <Box as="span"> &nbsp;is live on the Monad testnet &nbsp;</Box>
+          <Box as="span"><img width="25px" src="https://cdn-assets.molandak.org/8j113iuhx8yu/2HQaKB1ooNcajof7FgqRUw/b2df118daf78ccd7758253e677dfc7e9/Logo_Mark.png?width=256" /></Box>
+          {/* <Box as="span" color="gray">&nbsp;<b>bootstrap</b>&nbsp;</Box>*/}
+          <Box as="span">&nbsp;&nbsp;Learn more</Box>
+          <StyledLink href="https://testnet.monad.xyz/" target="_blank">
+            &nbsp;<b color="white">here</b>&nbsp;
           </StyledLink>
-          <Box as="span">&nbsp;&nbsp;👈👈👈&nbsp;&nbsp;</Box>
-          <Box as="span" color="gray">&nbsp;<b>$NOMA</b>&nbsp;</Box>
-          <Box as="span">points earned globally:&nbsp;</Box>
-          <Box as="span" color="gray" fontSize="21px" mt={-1}>&nbsp;&nbsp;<b>28,973</b>&nbsp;&nbsp;📈</Box>
+          <Box as="span">👈&nbsp;</Box>
+          {/* <Box as="span">points earned globally:&nbsp;</Box>
+          <Box as="span" color="gray" fontSize="21px" mt={-1}>&nbsp;&nbsp;<b>28,973</b>&nbsp;&nbsp;📈</Box> */}
         </Box>
 
         </Box>
@@ -121,10 +126,10 @@ const Hero: React.FC = () => {
                       Read our <br />announcement
                     </Button>
                   </a>
-                  <Button p={15} bg="lightgreen" minW={100} fontWeight={600} isDisabled h={70} borderStyle={"outset"} border={"1px solid white"}>
+                  <Button onClick={handleGoToDAPP} p={15} bg="lightgreen" minW={100} fontWeight={600} isDisabled h={70} borderStyle={"outset"} border={"1px solid white"}>
                     <div style={{ textAlign: "center" }}>
                       <div>Go to dApp</div>
-                      <div style={{ fontSize: "10px", marginTop: "5px", color: "gray" }}>Coming Soon</div>
+                      {/* <div style={{ fontSize: "10px", marginTop: "5px", color: "gray" }}>Coming Soon</div> */}
                     </div>
                   </Button>
                 </HStack>
