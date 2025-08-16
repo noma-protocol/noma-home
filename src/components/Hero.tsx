@@ -61,11 +61,11 @@ const Hero: React.FC = () => {
           <Box as="span"> &nbsp;is live on the Monad testnet &nbsp;</Box>
           <Box as="span"><img width="25px" src="https://cdn-assets.molandak.org/8j113iuhx8yu/2HQaKB1ooNcajof7FgqRUw/b2df118daf78ccd7758253e677dfc7e9/Logo_Mark.png?width=256" /></Box>
           {/* <Box as="span" color="gray">&nbsp;<b>bootstrap</b>&nbsp;</Box>*/}
-          <Box as="span">&nbsp;&nbsp;Learn more</Box>
+          {/* <Box as="span">&nbsp;&nbsp;Learn more</Box>
           <StyledLink href="https://testnet.monad.xyz/" target="_blank">
             &nbsp;<b color="white">here</b>&nbsp;
           </StyledLink>
-          <Box as="span">👈&nbsp;</Box>
+          <Box as="span">👈&nbsp;</Box> */}
           {/* <Box as="span">points earned globally:&nbsp;</Box>
           <Box as="span" color="gray" fontSize="21px" mt={-1}>&nbsp;&nbsp;<b>28,973</b>&nbsp;&nbsp;📈</Box> */}
         </Box>
